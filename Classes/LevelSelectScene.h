@@ -28,7 +28,6 @@ public:
 
 private:
 	std::string capture_name;
-	Game_Level level;
 };
 
 #endif  // __LEVELSELECTSCENE_H__

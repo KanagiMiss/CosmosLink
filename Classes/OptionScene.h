@@ -19,7 +19,6 @@ public:
     virtual void onExit();
 
 private:
-	Game_Level level;
 };
 
 #endif  // __OPTIONSCENE_H__

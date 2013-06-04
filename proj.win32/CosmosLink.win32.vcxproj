@@ -159,6 +159,8 @@
     <ClInclude Include="..\Classes\MainMenuScene.h" />
     <ClInclude Include="..\Classes\OptionScene.h" />
     <ClInclude Include="..\Classes\PlayingGameScene.h" />
+    <ClInclude Include="..\Classes\tinystr.h" />
+    <ClInclude Include="..\Classes\tinyxml.h" />
     <ClInclude Include="..\Classes\VisibleRect.h" />
     <ClInclude Include="CosResource.h" />
     <ClInclude Include="main.h" />
@@ -172,6 +174,10 @@
     <ClCompile Include="..\Classes\MainMenuScene.cpp" />
     <ClCompile Include="..\Classes\OptionScene.cpp" />
     <ClCompile Include="..\Classes\PlayingGameScene.cpp" />
+    <ClCompile Include="..\Classes\tinystr.cpp" />
+    <ClCompile Include="..\Classes\tinyxml.cpp" />
+    <ClCompile Include="..\Classes\tinyxmlerror.cpp" />
+    <ClCompile Include="..\Classes\tinyxmlparser.cpp" />
     <ClCompile Include="..\Classes\VisibleRect.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

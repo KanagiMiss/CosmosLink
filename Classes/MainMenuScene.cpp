@@ -1,10 +1,16 @@
 #include "MainMenuScene.h"
 #include "LevelSelectScene.h"
 #include "OptionScene.h"
+#include "CosLogic.h"
 #include "CosResource.h"
 #include "VisibleRect.h"
 
 using namespace cocos2d;
+
+static cosmos::CosGame *createGame()
+{
+	return cosmos::CosGame::getInstance();
+}
 
 CCScene* MainMenuScene::scene()
 {
@@ -49,9 +55,9 @@ bool MainMenuScene::init()
 		//CCMenuItemImage *pCloseItem = CCMenuItemImage::create(rcMainMenuItemCloseNormal, rcMainMenuItemCloseSelected, this, menu_selector(MainMenuScene::menuCloseCallback));
 
 		//pCloseItem->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20));
-		pStartItem->setPosition(ccp(VisibleRect::center().x,VisibleRect::center().y+50));
-		pOptionItem->setPosition(ccp(VisibleRect::center().x,VisibleRect::center().y));
-		pEndItem->setPosition(ccp(VisibleRect::center().x,VisibleRect::center().y-50));
+		pStartItem->setPosition(ccp(VisibleRect::center().x,VisibleRect::center().y));
+		pOptionItem->setPosition(ccp(VisibleRect::center().x,VisibleRect::center().y-50));
+		pEndItem->setPosition(ccp(VisibleRect::center().x,VisibleRect::center().y-100));
 
 		// Create a menu with the "close" menu item, it's an auto release object.
 		CCMenu* pMenu = CCMenu::create(pStartItem, pOptionItem, pEndItem, NULL);
@@ -71,6 +77,8 @@ bool MainMenuScene::init()
 
 		// Add the sprite to HelloWorld layer as a child layer.
 		//this->addChild(pSprite, 0);
+
+		createGame();	//create game logic
 
 		bRet = true;
 	} while (0);

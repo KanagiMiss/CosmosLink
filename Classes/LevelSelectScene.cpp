@@ -1,4 +1,5 @@
 #include "LevelSelectScene.h"
+#include "PlayingGameScene.h"
 #include "CosLogic.h"
 #include "CosResource.h"
 #include "VisibleRect.h"
@@ -11,7 +12,7 @@ CCLayer* RestartAction();
 
 static int s_nActionIdx = -1;
 
-CCLayer* CreateLayer(int nIndex)
+static CCLayer* CreateLayer(int nIndex)
 {
     CCLayer * pLayer = NULL;
 
@@ -19,30 +20,39 @@ CCLayer* CreateLayer(int nIndex)
     {
 	case 0:
 		pLayer = new LevelSelectLayer(rcLevel0Capture);
+		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(0));
 		break;
 	case 1:
 		pLayer = new LevelSelectLayer(rcLevel1Capture);
+		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(1));
 		break;
 	case 2:
 		pLayer = new LevelSelectLayer(rcLevel2Capture);
+		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(2));
 		break;
 	case 3:
 		pLayer = new LevelSelectLayer(rcLevel3Capture);
+		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(3));
 		break;
 	case 4:
 		pLayer = new LevelSelectLayer(rcLevel4Capture);
+		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(4));
 		break;
 	case 5:
 		pLayer = new LevelSelectLayer(rcLevel5Capture);
+		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(5));
 		break;
 	case 6:
 		pLayer = new LevelSelectLayer(rcLevel6Capture);
+		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(6));
 		break;
 	case 7:
 		pLayer = new LevelSelectLayer(rcLevel7Capture);
+		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(7));
 		break;
 	case 8:
 		pLayer = new LevelSelectLayer(rcLevel8Capture);
+		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(8));
 		break;
 	default:break;
     }
@@ -50,7 +60,7 @@ CCLayer* CreateLayer(int nIndex)
     return pLayer;
 }
 
-CCLayer* NextAction()
+static CCLayer* NextAction()
 {
     ++s_nActionIdx;
     s_nActionIdx = s_nActionIdx % LAYER_COUNT;
@@ -61,7 +71,7 @@ CCLayer* NextAction()
     return pLayer;
 }
 
-CCLayer* BackAction()
+static CCLayer* BackAction()
 {
     --s_nActionIdx;
     if( s_nActionIdx < 0 )
@@ -73,13 +83,15 @@ CCLayer* BackAction()
     return pLayer;
 }
 
-CCLayer* RestartAction()
+/*
+static CCLayer* EnterAction()
 {
     CCLayer* pLayer = CreateLayer(s_nActionIdx);
     pLayer->autorelease();
 
     return pLayer;
 }
+*/
 
 
 void LevelSelectScene::runThisTest()
@@ -130,7 +142,14 @@ void LevelSelectLayer::onExit()
 
 void LevelSelectLayer::enterCallback(CCObject* pSender)
 {
+	cosmos::CosGame *pGame = cosmos::CosGame::getInstance();
+	pGame->startGame();
 
+	PlayingGameScene *pScene = new PlayingGameScene();
+	if(pScene){
+		pScene->runThisTest();
+		pScene->release();
+	}
 }
 
 void LevelSelectLayer::nextCallback(CCObject* pSender)

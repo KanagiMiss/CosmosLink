@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<CosmosLink>
+  <VerNum name="纵向元素数" limit="2<=x<=20">7</VerNum>
+  <HorNum name="横向元素数" limit="2<=x<=20">12</HorNum>
+  <ImageSize name="单张图片长宽" limit="10<=x<=128">70</ImageSize>
+  <ImageNum name="需要加载的图片数，元素种类" limit="1<=x<=14" other="图片一共14张">14</ImageNum>
+  <NumPerCouple name="每对元素个数" limit="2<=x<=10">6</NumPerCouple>
+</CosmosLink>

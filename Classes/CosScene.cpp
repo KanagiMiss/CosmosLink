@@ -1,4 +1,5 @@
 #include "CosScene.h"
+#include "CosLogic.h"
 #include "MainMenuScene.h"
 #include "CosResource.h"
 #include "VisibleRect.h"
@@ -25,13 +26,16 @@ void CosScene::onEnter()
     CCMenu* pMenu =CCMenu::create(pMenuItem, NULL);
 
     pMenu->setPosition( CCPointZero );
-    pMenuItem->setPosition( ccp( VisibleRect::right().x - 50, VisibleRect::bottom().y + 25) );
+    pMenuItem->setPosition( ccp( VisibleRect::right().x - 75, VisibleRect::bottom().y + 25) );
 
     addChild(pMenu, 1);
 }
 
 void CosScene::MainMenuCallback(CCObject* pSender)
 {
+	cosmos::CosGame *pGame = cosmos::CosGame::getInstance();
+	pGame->endGame();
+
     CCScene* pScene = CCScene::create();
 	MainMenuScene* pLayer = MainMenuScene::create();
 

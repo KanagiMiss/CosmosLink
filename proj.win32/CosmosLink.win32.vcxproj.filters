@@ -13,6 +13,18 @@
       <UniqueIdentifier>{b285fb22-ccbc-450e-8658-2d1260f7095f}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;png;manifest</Extensions>
     </Filter>
+    <Filter Include="source\XML">
+      <UniqueIdentifier>{2dedf967-e612-428a-8e6e-5b7150e35af4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\XML">
+      <UniqueIdentifier>{b3a5a46a-7f48-4afd-9dff-d7ce38bd0c3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\SCENE">
+      <UniqueIdentifier>{e1cac815-08df-4c7b-a0f0-a546d77b9859}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\SCENE">
+      <UniqueIdentifier>{11fd33a5-ac80-489c-a03b-a6413e5ca9e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\CosmosLink.ico">
@@ -106,9 +118,6 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\MainMenuScene.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="CosResource.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -118,17 +127,26 @@
     <ClInclude Include="..\Classes\CosLogic.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\LevelSelectScene.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\Classes\tinystr.h">
+      <Filter>include\XML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tinyxml.h">
+      <Filter>include\XML</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CosScene.h">
-      <Filter>include</Filter>
+      <Filter>include\SCENE</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LevelSelectScene.h">
+      <Filter>include\SCENE</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainMenuScene.h">
+      <Filter>include\SCENE</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\OptionScene.h">
-      <Filter>include</Filter>
+      <Filter>include\SCENE</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\PlayingGameScene.h">
-      <Filter>include</Filter>
+      <Filter>include\SCENE</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -138,26 +156,38 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\MainMenuScene.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\VisibleRect.cpp">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\CosLogic.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\LevelSelectScene.cpp">
-      <Filter>source</Filter>
+    <ClCompile Include="..\Classes\tinystr.cpp">
+      <Filter>source\XML</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tinyxml.cpp">
+      <Filter>source\XML</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tinyxmlerror.cpp">
+      <Filter>source\XML</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tinyxmlparser.cpp">
+      <Filter>source\XML</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\CosScene.cpp">
-      <Filter>source</Filter>
+      <Filter>source\SCENE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LevelSelectScene.cpp">
+      <Filter>source\SCENE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainMenuScene.cpp">
+      <Filter>source\SCENE</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\OptionScene.cpp">
-      <Filter>source</Filter>
+      <Filter>source\SCENE</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\PlayingGameScene.cpp">
-      <Filter>source</Filter>
+      <Filter>source\SCENE</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
