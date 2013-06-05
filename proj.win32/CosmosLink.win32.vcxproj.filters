@@ -25,81 +25,129 @@
     <Filter Include="source\SCENE">
       <UniqueIdentifier>{11fd33a5-ac80-489c-a03b-a6413e5ca9e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="resource\images">
+      <UniqueIdentifier>{8dbbf9dd-3651-4da5-bdf2-d196f8798f21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\CosmosLink.ico">
       <Filter>resource</Filter>
     </None>
-    <None Include="..\Resources\CloseSelected.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\b1.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\CloseNormal.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\b2.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\HelloWorld.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\CloseNormal.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\EndNormal.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\CloseSelected.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\EndSelected.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\elem0.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\OptionNormal.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\elem1.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\OptionSelected.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\elem2.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\StartNormal.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\elem3.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\StartSelected.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\elem4.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\b1.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\elem5.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\b2.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\elem6.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\f1.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\elem7.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\f2.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\elem8.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\r1.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\elem9.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\r2.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\elem10.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\level01cap.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\elem11.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\level02cap.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\elem12.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\level03cap.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\elem13.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\level04cap.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\EndNormal.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\level05cap.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\EndSelected.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\level06cap.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\f1.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\level07cap.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\f2.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\level08cap.png">
-      <Filter>resource</Filter>
+    <None Include="..\Resources\images\HelloWorld.png">
+      <Filter>resource\images</Filter>
     </None>
-    <None Include="..\Resources\level09cap.png">
+    <None Include="..\Resources\images\level01cap.png">
+      <Filter>resource\images</Filter>
+    </None>
+    <None Include="..\Resources\images\level02cap.png">
+      <Filter>resource\images</Filter>
+    </None>
+    <None Include="..\Resources\images\level03cap.png">
+      <Filter>resource\images</Filter>
+    </None>
+    <None Include="..\Resources\images\level04cap.png">
+      <Filter>resource\images</Filter>
+    </None>
+    <None Include="..\Resources\images\level05cap.png">
+      <Filter>resource\images</Filter>
+    </None>
+    <None Include="..\Resources\images\level06cap.png">
+      <Filter>resource\images</Filter>
+    </None>
+    <None Include="..\Resources\images\level07cap.png">
+      <Filter>resource\images</Filter>
+    </None>
+    <None Include="..\Resources\images\level08cap.png">
+      <Filter>resource\images</Filter>
+    </None>
+    <None Include="..\Resources\images\level09cap.png">
+      <Filter>resource\images</Filter>
+    </None>
+    <None Include="..\Resources\images\OptionNormal.png">
+      <Filter>resource\images</Filter>
+    </None>
+    <None Include="..\Resources\images\OptionSelected.png">
+      <Filter>resource\images</Filter>
+    </None>
+    <None Include="..\Resources\images\r1.png">
+      <Filter>resource\images</Filter>
+    </None>
+    <None Include="..\Resources\images\r2.png">
+      <Filter>resource\images</Filter>
+    </None>
+    <None Include="..\Resources\images\StartNormal.png">
+      <Filter>resource\images</Filter>
+    </None>
+    <None Include="..\Resources\images\StartSelected.png">
+      <Filter>resource\images</Filter>
+    </None>
+    <None Include="..\Resources\cosdata.xml">
       <Filter>resource</Filter>
     </None>
   </ItemGroup>
