@@ -104,5 +104,6 @@ void MainMenuScene::menuCloseCallback(CCObject* pSender)
 {
 	// "close" menu item clicked
 	CCDirector::sharedDirector()->end();
+	cosmos::CosGame::releaseInstance();
 }
 

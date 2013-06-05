@@ -1,5 +1,8 @@
 #include "CosLogic.h"
 #include <ctime>
+#include <queue>
+#include <vector>
+#include <algorithm>
 
 #define __KDEBUG__
 
@@ -106,6 +109,126 @@ void CosGame::randArr()
 			NumTim[RandNum]++;
 		}
 	}
+}
+
+bool CosGame::isInLinkArea(int x, int y)
+{
+	if((x >= 1 && x <= HorNum)
+		&& (y>=1 && y <= VerNum )
+		&& Board[y][x] != LINK_NULL)
+		return true;
+	return false;
+}
+
+bool CosGame::not_searched(std::vector<SP> &searched, const SP &point_to_add)
+{
+	for(std::vector<SP>::size_type i = 0; i < searched.size(); ++i)
+		if((searched[i].x == point_to_add.x) && (searched[i].y == point_to_add.y))
+			return false;
+	return true;
+}
+
+void CosGame::expand_search_point(std::vector<SP> &searched, std::queue<SP> &opcl, std::vector<SP> &link_set,const SP &point_to_search)
+{
+	searched.push_back(point_to_search);
+	int dx,dy;
+	
+	//ËÑË÷UP
+	dx = point_to_search.x, dy = point_to_search.y+1;
+	while(dy < BoardVer && Board[dy][dx] == LINK_NULL){
+		SP p;
+		p.x = dx;p.y = dy;p.cross = point_to_search.cross + 1;
+		if(not_searched(searched,p))
+			opcl.push(p);
+		dy++;
+	}
+	if(dy < BoardVer && Board[dy][dx] != LINK_NULL){
+		SP p;
+		p.x = dx;p.y = dy;p.cross = point_to_search.cross + 1;
+		link_set.push_back(p);
+	}
+	//ËÑË÷DOWN
+	dx = point_to_search.x, dy = point_to_search.y-1;
+	while(dy >= 0 && Board[dy][dx] == LINK_NULL){
+		SP p;
+		p.x = dx;p.y = dy;p.cross = point_to_search.cross + 1;
+		if(not_searched(searched,p))
+			opcl.push(p);
+		dy--;
+	}
+	if(dy >= 0 && Board[dy][dx] != LINK_NULL){
+		SP p;
+		p.x = dx;p.y = dy;p.cross = point_to_search.cross + 1;
+		link_set.push_back(p);
+	}
+	//ËÑË÷LEFT
+	dx = point_to_search.x-1, dy = point_to_search.y;
+	while(dx >= 0 && Board[dy][dx] == LINK_NULL){
+		SP p;
+		p.x = dx;p.y = dy;p.cross = point_to_search.cross + 1;
+		if(not_searched(searched,p))
+			opcl.push(p);
+		dx--;
+	}
+	if(dx >= 0 && Board[dy][dx] != LINK_NULL){
+		SP p;
+		p.x = dx;p.y = dy;p.cross = point_to_search.cross + 1;
+		link_set.push_back(p);
+	}
+	//ËÑË÷RIGHT
+	dx = point_to_search.x+1, dy = point_to_search.y;
+	while(dx < BoardHor && Board[dy][dx] == LINK_NULL){
+		SP p;
+		p.x = dx;p.y = dy;p.cross = point_to_search.cross + 1;
+		if(not_searched(searched,p))
+			opcl.push(p);
+		dx++;
+	}
+	if(dx < BoardHor && Board[dy][dx] != LINK_NULL){
+		SP p;
+		p.x = dx;p.y = dy;p.cross = point_to_search.cross + 1;
+		link_set.push_back(p);
+	}
+}
+
+bool CosGame::check_succeed(std::vector<SP> &link_set, const SP &target, const SP &origin)
+{
+	for(std::vector<SP>::size_type i = 0; i < link_set.size(); ++i)
+		if(((link_set[i].y == target.y) && (link_set[i].x == target.x))
+			&& (Board[origin.y][origin.x] == Board[target.y][target.x]))
+			return true;
+	return false;
+}
+
+bool CosGame::isLinkable(int x1, int y1, int x2, int y2)
+{
+	if((x1 == x2) && (y1 == y2)) return false;
+	std::vector<SP> searched;
+	std::vector<SP> link_set;
+	std::queue<SP> opcl;
+
+#ifdef __KDEBUG__
+	std::cout << x1 << " " << y1 << " " << x2 << " " << y2 << " " << std::endl
+		<< BoardVer << " " << BoardHor << std::endl;
+#endif
+
+	SP target;target.x = x2;target.y = y2;target.cross = -1;
+	SP origin;origin.x = x1;origin.y = y1;origin.cross = -1;
+	expand_search_point(searched, opcl, link_set, origin);
+	if(check_succeed(link_set, target, origin))
+			return true;
+	link_set.clear();
+	while(!opcl.empty()){
+		SP p = opcl.front();
+		opcl.pop();
+		if(p.cross < 2){
+			expand_search_point(searched, opcl, link_set, p);
+			if(check_succeed(link_set, target, origin))
+				return true;
+			link_set.clear();
+		}
+	}
+	return false;
 }
 
 
