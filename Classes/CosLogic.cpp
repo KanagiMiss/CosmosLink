@@ -13,7 +13,7 @@
 namespace cosmos{
 
 CosGame::CosGame():
-	CurrentState(READY)
+	CurrentState(NOTSTART)
 {
 	//ctor
 	srand(unsigned(time(0)));
@@ -202,10 +202,13 @@ bool CosGame::check_succeed(std::vector<SP> &link_set, const SP &target, const S
 
 bool CosGame::isLinkable(int x1, int y1, int x2, int y2)
 {
+	/**
+	检查两个连连看方块是否可以相消，使用广度优先搜寻，使用标准库中的vector和queue，方便编写程序。
+	 */
 	if((x1 == x2) && (y1 == y2)) return false;
-	std::vector<SP> searched;
-	std::vector<SP> link_set;
-	std::queue<SP> opcl;
+	std::vector<SP> searched(BoardHor*2);//已经搜索过的点
+	std::vector<SP> link_set(BoardHor*2);//从（x1,y1）可以到达的连连看方块集合
+	std::queue<SP> opcl;//广度优先搜寻使用的open-close表，它是一个队列
 
 #ifdef __KDEBUG__
 	std::cout << x1 << " " << y1 << " " << x2 << " " << y2 << " " << std::endl
@@ -231,5 +234,13 @@ bool CosGame::isLinkable(int x1, int y1, int x2, int y2)
 	return false;
 }
 
+bool CosGame::isAllClear()
+{
+	for(int i = 0; i < VerNum; ++i)
+		for(int j = 0; j < HorNum; ++j)
+			if(Board[i][j] != LINK_NULL)
+				return false;
+	return true;
+}
 
 }

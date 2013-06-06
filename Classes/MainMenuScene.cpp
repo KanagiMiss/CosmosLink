@@ -1,5 +1,5 @@
 #include "MainMenuScene.h"
-#include "LevelSelectScene.h"
+#include "DifficultyScene.h"
 #include "OptionScene.h"
 #include "CosLogic.h"
 #include "CosResource.h"
@@ -88,7 +88,7 @@ bool MainMenuScene::init()
 
 void MainMenuScene::menuStartCallback(CCObject* pSender)
 {
-	LevelSelectScene *pScene = new LevelSelectScene();
+	DifficultyScene *pScene = new DifficultyScene();
 	if(pScene){
 		pScene->runThisTest();
 		pScene->release();

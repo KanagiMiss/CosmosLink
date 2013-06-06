@@ -1,4 +1,5 @@
 #include "PlayingGameScene.h"
+#include "GameEndScene.h"
 #include "CosLogic.h"
 #include "CosResource.h"
 #include "tinyxml.h"
@@ -28,10 +29,24 @@ void PlayingGameScene::runThisTest()
 
 bool PlayingGameLayer::loadConfigFromFile()
 {
+	cosmos::CosGame *pGame = cosmos::CosGame::getInstance();
 	TiXmlDocument *pDoc = new TiXmlDocument(XML_FILE);
 	pDoc->LoadFile();
 	TiXmlElement *Root = pDoc->RootElement();  //根，<Rank>
-	TiXmlElement *pFirE = Root->FirstChildElement(); //叶子节点
+	TiXmlNode *Child = Root->FirstChild("Easy");
+	switch(pGame->getDiffculty())
+	{
+	case cosmos::EASY:
+		Child = Root->FirstChild("Easy");
+		break;
+	case cosmos::NORMAL:
+		Child = Root->FirstChild("Normal");
+		break;
+	case cosmos::HARD:
+		Child = Root->FirstChild("Hard");
+		break;
+	}
+	TiXmlElement *pFirE = Child->FirstChildElement(); //叶子节点
 	while(NULL != pFirE)
 	{
 		if (pFirE->ValueStr().compare("VerNum") == 0)
@@ -75,7 +90,7 @@ bool PlayingGameLayer::loadAllImages()
 	{
 		cosmos::CosGame *pGame = cosmos::CosGame::getInstance();
 		cosmos::CosGame::link_t val = pGame->getBoardPosValue(i,j);
-		sprintf(pTrName,rcLinkImages,val);
+		sprintf(pTrName,rcLink0Images,val);
 
 		int nPointX = m_nOriginX + (j-1)*m_nImageSizeDraw;
 		int nPointY = m_nOriginY + (i-1)*m_nImageSizeDraw;
@@ -229,6 +244,15 @@ void PlayingGameLayer::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent
 #endif
 
 	updateAndRender(touchLocation);
+
+	cosmos::CosGame *pGame = cosmos::CosGame::getInstance();
+	if(pGame->isAllClear()){
+		CCScene *pScene = CCScene::create();
+		GameEndScene *pLayer = GameEndScene::create();
+		pScene->addChild(pLayer);
+		CCDirector::sharedDirector()->replaceScene(pScene);
+		cosmos::CosGame::getInstance()->winGame();
+	}
 }
 
 void PlayingGameLayer::touchDelegateRetain()

@@ -56,4 +56,13 @@ private:
 	cocos2d::CCPoint m_ptSecondClick;//选定的第二个连连看方块在Board上的坐标
 };
 
+class GameEndLayer: public cocos2d::CCLayer
+{
+public:
+	virtual void onEnter();
+    virtual void onExit();
+
+private:
+};
+
 #endif  // __PLAYINGGAMESCENE_H__

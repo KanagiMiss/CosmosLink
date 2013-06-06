@@ -196,6 +196,12 @@
     <ClInclude Include="..\Classes\PlayingGameScene.h">
       <Filter>include\SCENE</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\GameEndScene.h">
+      <Filter>include\SCENE</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\DifficultyScene.h">
+      <Filter>include\SCENE</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -235,6 +241,12 @@
       <Filter>source\SCENE</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\PlayingGameScene.cpp">
+      <Filter>source\SCENE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameEndScene.cpp">
+      <Filter>source\SCENE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\DifficultyScene.cpp">
       <Filter>source\SCENE</Filter>
     </ClCompile>
   </ItemGroup>

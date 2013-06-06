@@ -6,8 +6,8 @@
     <HorNum name="横向元素数" limit="2<=x<=20">7</HorNum>
     <ImageSizeDraw name="单张图片画时的长宽" limit="10<=x<=128">70</ImageSizeDraw>
     <ImageSizeReal name="单张图片真实的长宽" limit="10<=x<=128">64</ImageSizeReal>
-    <ImageNum name="需要加载的图片数，元素种类" limit="1<=x<=14" other="图片一共14张">7</ImageNum>
-    <NumPerCouple name="每对元素个数" limit="2<=x<=10">4</NumPerCouple>
+    <ImageNum name="需要加载的图片数，元素种类" limit="1<=x<=14" other="图片一共14张">14</ImageNum>
+    <NumPerCouple name="每对元素个数" limit="2<=x<=10">2</NumPerCouple>
 	</Easy>
 	<Normal>
 		<VerNum name="纵向元素数" limit="2<=x<=20">7</VerNum>

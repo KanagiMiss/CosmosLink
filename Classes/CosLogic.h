@@ -29,9 +29,16 @@ enum Game_Level{
 };
 
 enum Game_State{
-	READY = 0,
+	NOTSTART = 0,
 	RUN,
-	PAUSE
+	WIN,
+	LOSE
+};
+
+enum Game_Difficulty{
+	EASY = 0,
+	NORMAL,
+	HARD
 };
 
 static const int LINK_NULL = 15;
@@ -54,26 +61,23 @@ public:
 
 	void createBoard(int x, int y, int ltc, int lmc);//创建一个长度为x,宽度为y的连连看面板,ltc为连连看元素的种类,lmc为每个元素最多有几个
 	void startGame(){reset();CurrentState = RUN;}//开始游戏
-	void pauseGame(){CurrentState = PAUSE;}//暂停游戏
-	void endGame(){CurrentState = READY;}//结束游戏
+	void endGame(){CurrentState = NOTSTART;}//结束游戏
+	void winGame(){CurrentState = WIN;}//游戏胜利
+	void loseGame(){CurrentState = LOSE;}//游戏失败
 	void chooseLevel(Game_Level level){CurrentLevel = level;}//选择关卡
+	void chooseDifficulty(Game_Difficulty diff){CurrentDiff = diff;};//选择难度
 	
 	bool isInLinkArea(int x, int y);//检测这个点是否在连连看图片区域内
 	bool isLinkable(int x1, int y1, int x2, int y2);//检测两个连连看元素是否能够相消
+	bool isAllClear();//检测是否所有的连连看方块都被消去
 
 	Game_State getGameState(){return CurrentState;}
 	Game_Level getGameLevel(){return CurrentLevel;}
+	Game_Difficulty getDiffculty(){return CurrentDiff;}
 	link_t getBoardPosValue(int i, int j){return Board[i][j];}//获得面板对应点的坐标
 	void setLinkNull(int x, int y){Board[y][x] = LINK_NULL;}
 
 private:
-	typedef enum Search_State{
-		UP = 0,
-		DOWN,
-		LEFT,
-		RIGHT
-	}SS;
-
 	typedef struct Search_Point{
 		int x,y;
 		int cross;
@@ -90,13 +94,14 @@ private:
 
 	Game_Level CurrentLevel;
 	Game_State CurrentState;
-	int BoardHor;//板的实际长度
-	int BoardVer;//板的实际高度
-	int HorNum;	//板的逻辑长度
-	int VerNum;	//板的逻辑高度
+	Game_Difficulty CurrentDiff;
+	int BoardHor;//板上横向连连看个数（带隐藏位）
+	int BoardVer;//板上纵向连连看个数（带隐藏位）
+	int HorNum;	//横向连连看个数
+	int VerNum;	//纵向连连看个数
 	int link_type_count;	//连连看元素的种类
 	int link_max_couple;	//每个元素最多有几个
-	board_t Board;
+	board_t Board;//连连看主面板
 
 };
 
