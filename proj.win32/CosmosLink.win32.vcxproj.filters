@@ -166,9 +166,6 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="CosResource.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\VisibleRect.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -200,6 +197,12 @@
       <Filter>include\SCENE</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\DifficultyScene.h">
+      <Filter>include\SCENE</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CosResource.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GalleryScene.h">
       <Filter>include\SCENE</Filter>
     </ClInclude>
   </ItemGroup>
@@ -247,6 +250,9 @@
       <Filter>source\SCENE</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\DifficultyScene.cpp">
+      <Filter>source\SCENE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GalleryScene.cpp">
       <Filter>source\SCENE</Filter>
     </ClCompile>
   </ItemGroup>

@@ -133,6 +133,17 @@ void LevelSelectLayer::onEnter()
 
 	// Add the sprite to HelloWorld layer as a child layer.
 	addChild(pSprite, 1);
+
+	//load background
+	CCSprite* pBack = CCSprite::create(rcLevelSelectBackGround);
+	if(pBack){
+		// Place the sprite on the center of the screen
+		//pSprite->setAnchorPoint(ccp(0,0));
+		pBack->setPosition(VisibleRect::center());
+
+		// Add the sprite to HelloWorld layer as a child layer.
+		this->addChild(pBack, 0);
+	}
 }
 
 void LevelSelectLayer::onExit()

@@ -27,6 +27,10 @@ public:
 	void updateAndRender(const cocos2d::CCPoint &p);
 	void selectLink(int nIndex);
 	void unSelectLink(int nIndex);
+	void changeScoreTo(int nDstScore);
+	void updateTime();
+	void gotoEndGameScene(bool);
+	void GameLoop(float);
 
 	//touch
 	virtual void ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent);
@@ -35,7 +39,18 @@ public:
 	virtual void touchDelegateRelease();
 
 private:
+	int nDstScore;
+	bool isChangeScore;
+	void runChangeScore();
+
+	cocos2d::CCLabelTTF *pScore;//分数
+	cocos2d::CCLabelTTF *pTimer;//时间
+	//cocos2d::CCTimer *pGameLoopTimer;//游戏计时器
+	cosmos::CosGame *pGame;
 	std::vector<cocos2d::CCSprite *> m_pAllImages;//存储所有连连看图像指针
+	double m_lfRewardInc;//游戏奖励增量
+	double m_lfTimeLimit;//游戏时间限制
+	double m_lfCurrTime;//游戏剩余时间
 	int m_nVerNum;//纵向连连看个数
 	int m_nHorNum;//横向连连看个数
 	int m_nImageSizeDraw;//连连图像画时的大小
@@ -54,15 +69,6 @@ private:
 	bool m_bSecondSelect;//是否选定第二个连连看方块
 	cocos2d::CCPoint m_ptFirstClick;//选定的第一个连连看方块在Board上的坐标
 	cocos2d::CCPoint m_ptSecondClick;//选定的第二个连连看方块在Board上的坐标
-};
-
-class GameEndLayer: public cocos2d::CCLayer
-{
-public:
-	virtual void onEnter();
-    virtual void onExit();
-
-private:
 };
 
 #endif  // __PLAYINGGAMESCENE_H__

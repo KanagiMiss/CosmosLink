@@ -8,6 +8,7 @@
     <ImageSizeReal name="单张图片真实的长宽" limit="10<=x<=128">64</ImageSizeReal>
     <ImageNum name="需要加载的图片数，元素种类" limit="1<=x<=14" other="图片一共14张">7</ImageNum>
     <NumPerCouple name="每对元素个数" limit="2<=x<=10">4</NumPerCouple>
+    <GameTime name="游戏时间限制" limit="1<=x<=1000">20</GameTime>
 	</Easy>
 	<Normal>
 		<VerNum name="纵向元素数" limit="2<=x<=20">7</VerNum>
@@ -16,6 +17,7 @@
     <ImageSizeReal name="单张图片真实的长宽" limit="10<=x<=128">64</ImageSizeReal>
     <ImageNum name="需要加载的图片数，元素种类" limit="1<=x<=14" other="图片一共14张">14</ImageNum>
     <NumPerCouple name="每对元素个数" limit="2<=x<=10">4</NumPerCouple>
+    <GameTime name="游戏时间限制" limit="1<=x<=1000">30</GameTime>
 	</Normal>
 	<Hard>
 		<VerNum name="纵向元素数" limit="2<=x<=20">7</VerNum>
@@ -24,5 +26,6 @@
     <ImageSizeReal name="单张图片真实的长宽" limit="10<=x<=128">64</ImageSizeReal>
     <ImageNum name="需要加载的图片数，元素种类" limit="1<=x<=14" other="图片一共14张">14</ImageNum>
     <NumPerCouple name="每对元素个数" limit="2<=x<=10">6</NumPerCouple>
+    <GameTime name="游戏时间限制" limit="1<=x<=1000">40</GameTime>
 	</Hard>
 </CosmosLink>

@@ -8,6 +8,7 @@ using namespace cocos2d;
 
 void OptionScene::runThisTest()
 {
+	CCDirector::sharedDirector()->replaceScene(this);
 }
 
 void OptionLayer::onEnter()

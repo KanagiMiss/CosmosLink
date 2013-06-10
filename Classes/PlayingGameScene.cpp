@@ -8,6 +8,7 @@
 #include "CosResource.h"
 
 #include <string>
+#include <cmath>
 
 #define __KDEBUG__
 #ifdef __KDEBUG__
@@ -29,7 +30,6 @@ void PlayingGameScene::runThisTest()
 
 bool PlayingGameLayer::loadConfigFromFile()
 {
-	cosmos::CosGame *pGame = cosmos::CosGame::getInstance();
 	TiXmlDocument *pDoc = new TiXmlDocument(XML_FILE);
 	pDoc->LoadFile();
 	TiXmlElement *Root = pDoc->RootElement();  //根，<Rank>
@@ -67,10 +67,13 @@ bool PlayingGameLayer::loadConfigFromFile()
 		}else if (pFirE->ValueStr().compare("NumPerCouple") == 0)
 		{
 			m_nNumPerCouple = atoi(pFirE->FirstChild()->Value());
+		}else if (pFirE->ValueStr().compare("GameTime") == 0)
+		{
+			m_lfTimeLimit = atoi(pFirE->FirstChild()->Value());
 		}else
 		{
 			return false;
-		}
+		}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 		pFirE = pFirE->NextSiblingElement();		
 	}
 	return true;
@@ -85,12 +88,12 @@ bool PlayingGameLayer::loadAllImages()
 	m_nOriginX = VisibleRect::center().x - (m_nBoardWidth/2);
 	m_nOriginY = VisibleRect::center().y - (m_nBoradHeight/2);
 
+	int nLevelNum = static_cast<int>(pGame->getGameLevel());//游戏关卡索引值
 	for (int i=1;i<m_nVerNum+1;i++)
 		for (int j=1;j<m_nHorNum+1;j++)
 	{
-		cosmos::CosGame *pGame = cosmos::CosGame::getInstance();
 		cosmos::CosGame::link_t val = pGame->getBoardPosValue(i,j);
-		sprintf(pTrName,rcLink0Images,val);
+		sprintf(pTrName,rcLinkImages,/*nLevelNum,*/val);
 
 		int nPointX = m_nOriginX + (j-1)*m_nImageSizeDraw;
 		int nPointY = m_nOriginY + (i-1)*m_nImageSizeDraw;
@@ -105,6 +108,19 @@ bool PlayingGameLayer::loadAllImages()
 		pPic->setPosition(ccp(nPointX,nPointY));
 		addChild(pPic);
 	}
+
+	//load background
+	sprintf(pTrName,rcPlayingGameBackGround,nLevelNum);
+	CCSprite* pSprite = CCSprite::create(pTrName);
+	if(pSprite){
+		// Place the sprite on the center of the screen
+		//pSprite->setAnchorPoint(ccp(0,0));
+		pSprite->setPosition(VisibleRect::center());
+
+		// Add the sprite to layer as a child layer.
+		this->addChild(pSprite, 0);
+	}
+
 	return true;
 }
 
@@ -150,20 +166,43 @@ void PlayingGameLayer::onEnter()
     //m_bSecondClick = false;
 	m_bFirstSelect = false;
 	m_bSecondSelect = false;
+	m_lfRewardInc = 0;
+	isChangeScore = false;
+	pGame = cosmos::CosGame::getInstance();
 
 	//make this layer to be touchable
 	this->setTouchEnabled(true);
+	
+	//load configure
 	if(!loadConfigFromFile())
 		CCLOG("Error: Failed to load config file.");
 	#ifdef __KDEBUG__
 	std::cout << m_nImageSizeDraw << " " << m_nImageNum << std::endl;
 	#endif
+	//init current time (must be at here!)
+	m_lfCurrTime = m_lfTimeLimit;
 	//load background
 	//create logical board
 	cosmos::CosGame::getInstance()->createBoard(m_nHorNum,m_nVerNum,m_nImageNum,m_nNumPerCouple);
 	//load all images
 	if(!loadAllImages())
 		CCLOG("Error: Failed to load images.");
+
+	//set initial score
+	char tempstr[20];
+	_itoa(cosmos::CosGame::getInstance()->getGameTime(),tempstr,10);
+	pScore = CCLabelTTF::create(tempstr, "Arial", 25);
+	pScore->setPosition(VisibleRect::rightTop());
+	pScore->setAnchorPoint(ccp(1,1));
+	addChild(pScore);
+	//set initial time
+	sprintf(tempstr,"%.2lf",m_lfTimeLimit - pGame->getGameTime());
+	pTimer = CCLabelTTF::create(tempstr, "Arial", 25);
+	pTimer->setPosition(VisibleRect::leftTop());
+	pTimer->setAnchorPoint(ccp(0,1));
+	addChild(pTimer);
+	//set game loop
+	this->schedule(schedule_selector(PlayingGameLayer::GameLoop),0.1f);
 }
 
 void PlayingGameLayer::onExit()
@@ -179,10 +218,65 @@ cocos2d::CCPoint PlayingGameLayer::convertoBoardPoint(const cocos2d::CCPoint &p)
 	return point;
 }
 
+void PlayingGameLayer::GameLoop(float f)
+{
+	//update logical time (real time)
+	pGame->incGameTime(f);
+	//update game time (include reward time)
+	m_lfCurrTime -= f;
+	updateTime();
+	if(m_lfCurrTime < 0){
+		gotoEndGameScene(false);//failed
+	}
+	if(isChangeScore){
+		runChangeScore();
+	}
+}
+
+void PlayingGameLayer::updateTime()
+{
+	char tempstr[20]={};
+	sprintf(tempstr,"%.2lf",m_lfCurrTime);
+	pTimer->setString(tempstr);
+}
+
+void PlayingGameLayer::runChangeScore()
+{
+	int tempScore = atoi(pScore->getString());
+	int addScore = nDstScore-tempScore;
+	char tempStr[20]={};
+	#ifdef __KDEBUG__
+	std::cout << tempScore << " " << nDstScore <<std::endl;
+	#endif
+	if(abs(addScore)>10)
+	{
+		tempScore+=addScore/5;
+		sprintf(tempStr,"%d",tempScore);
+		pScore->setString(tempStr);
+	}
+	else if(abs(addScore)>2 && abs(addScore)<=10)
+	{
+		tempScore += addScore/abs(addScore);
+		sprintf(tempStr,"%d",tempScore);
+		pScore->setString(tempStr);
+	}
+	else
+	{
+		sprintf(tempStr,"%d",nDstScore);
+		pScore->setString(tempStr);
+		isChangeScore = false;
+	}
+}
+
+void PlayingGameLayer::changeScoreTo(int nDstScore)
+{	
+	isChangeScore = true;
+	this->nDstScore = nDstScore;
+}
+
 void PlayingGameLayer::updateAndRender(const cocos2d::CCPoint &p)
 {
 	CCPoint BoardPoint = convertoBoardPoint(p);
-	cosmos::CosGame *pGame = cosmos::CosGame::getInstance();
 	bool isInLink = pGame->isInLinkArea(static_cast<int>(BoardPoint.x),static_cast<int>(BoardPoint.y));
 
 #ifdef __KDEBUG__
@@ -221,14 +315,38 @@ void PlayingGameLayer::updateAndRender(const cocos2d::CCPoint &p)
 			x2 = static_cast<int>(m_ptSecondClick.x),
 			y2 = static_cast<int>(m_ptSecondClick.y);
 		if(pGame->isLinkable(x1, y1, x2, y2)){
+			//消去连连看方块
 			pGame->setLinkNull(x1,y1);
 			pGame->setLinkNull(x2,y2);
 			this->removeChild(m_pAllImages[(y1-1)*m_nHorNum + (x1-1)],true);
 			this->removeChild(m_pAllImages[(y2-1)*m_nHorNum + (x2-1)],true);
+			//时间奖励
+			m_lfRewardInc += 1;
+			double incTime = 0.5+2.5*(1-exp(-m_lfRewardInc*0.2));
+			incTime = ((m_lfCurrTime + incTime)>m_lfTimeLimit)?0:incTime;
+			m_lfCurrTime += incTime;//inc = 0.5 + 2.5*(1-exp(-x*0.2))
+			//分数奖励
+			pGame->addGameScore(50+50*(1-exp(-m_lfRewardInc*0.2)));
+			changeScoreTo(pGame->getGameScore());
+		}
+		else{
+			m_lfRewardInc = 0;
 		}
 		unSelectLink(0);
 		unSelectLink(1);
 	}
+}
+
+void PlayingGameLayer::gotoEndGameScene(bool succeed)
+{
+	if(succeed)
+		pGame->winGame();
+	else
+		pGame->loseGame();
+	CCScene *pScene = CCScene::create();
+	GameEndScene *pLayer = GameEndScene::create();
+	pScene->addChild(pLayer);
+	CCDirector::sharedDirector()->replaceScene(pScene);
 }
 
 void PlayingGameLayer::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent)
@@ -245,13 +363,8 @@ void PlayingGameLayer::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent
 
 	updateAndRender(touchLocation);
 
-	cosmos::CosGame *pGame = cosmos::CosGame::getInstance();
 	if(pGame->isAllClear()){
-		CCScene *pScene = CCScene::create();
-		GameEndScene *pLayer = GameEndScene::create();
-		pScene->addChild(pLayer);
-		CCDirector::sharedDirector()->replaceScene(pScene);
-		cosmos::CosGame::getInstance()->winGame();
+		gotoEndGameScene(true);
 	}
 }
 

@@ -60,6 +60,8 @@ void CosGame::createBoard(int x, int y, int ltc, int lmc)
 
 void CosGame::reset()
 {
+	GameTime = 0;
+	GameScore = 0;
 	BoardHor = 0;
 	BoardVer = 0;
 	HorNum = 0;

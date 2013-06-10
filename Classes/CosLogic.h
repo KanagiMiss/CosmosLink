@@ -66,11 +66,15 @@ public:
 	void loseGame(){CurrentState = LOSE;}//游戏失败
 	void chooseLevel(Game_Level level){CurrentLevel = level;}//选择关卡
 	void chooseDifficulty(Game_Difficulty diff){CurrentDiff = diff;};//选择难度
+	void addGameScore(int nAddScore){GameScore += nAddScore;}
+	void incGameTime(double inc){GameTime += inc;};
 	
 	bool isInLinkArea(int x, int y);//检测这个点是否在连连看图片区域内
 	bool isLinkable(int x1, int y1, int x2, int y2);//检测两个连连看元素是否能够相消
 	bool isAllClear();//检测是否所有的连连看方块都被消去
 
+	double getGameTime(){return GameTime;}
+	int getGameScore(){return GameScore;}
 	Game_State getGameState(){return CurrentState;}
 	Game_Level getGameLevel(){return CurrentLevel;}
 	Game_Difficulty getDiffculty(){return CurrentDiff;}
@@ -95,6 +99,8 @@ private:
 	Game_Level CurrentLevel;
 	Game_State CurrentState;
 	Game_Difficulty CurrentDiff;
+	int GameScore;//游戏分数
+	double GameTime;//游戏时间限制
 	int BoardHor;//板上横向连连看个数（带隐藏位）
 	int BoardVer;//板上纵向连连看个数（带隐藏位）
 	int HorNum;	//横向连连看个数

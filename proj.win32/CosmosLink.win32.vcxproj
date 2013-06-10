@@ -169,8 +169,10 @@
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\CosLogic.h" />
+    <ClInclude Include="..\Classes\CosResource.h" />
     <ClInclude Include="..\Classes\CosScene.h" />
     <ClInclude Include="..\Classes\DifficultyScene.h" />
+    <ClInclude Include="..\Classes\GalleryScene.h" />
     <ClInclude Include="..\Classes\GameEndScene.h" />
     <ClInclude Include="..\Classes\LevelSelectScene.h" />
     <ClInclude Include="..\Classes\MainMenuScene.h" />
@@ -179,7 +181,6 @@
     <ClInclude Include="..\Classes\tinystr.h" />
     <ClInclude Include="..\Classes\tinyxml.h" />
     <ClInclude Include="..\Classes\VisibleRect.h" />
-    <ClInclude Include="CosResource.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -188,6 +189,7 @@
     <ClCompile Include="..\Classes\CosLogic.cpp" />
     <ClCompile Include="..\Classes\CosScene.cpp" />
     <ClCompile Include="..\Classes\DifficultyScene.cpp" />
+    <ClCompile Include="..\Classes\GalleryScene.cpp" />
     <ClCompile Include="..\Classes\GameEndScene.cpp" />
     <ClCompile Include="..\Classes\LevelSelectScene.cpp" />
     <ClCompile Include="..\Classes\MainMenuScene.cpp" />

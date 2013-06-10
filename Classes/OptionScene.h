@@ -9,6 +9,7 @@
 
 class OptionScene: public CosScene
 {
+public:
 	virtual void runThisTest();
 };
 

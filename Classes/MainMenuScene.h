@@ -19,6 +19,7 @@ public:
     // selector callbacks
     void menuStartCallback(CCObject* pSender);
 	void menuOptionCallback(CCObject* pSender);
+	void menuGalleryCallback(CCObject* pSender);
 	void menuCloseCallback(CCObject* pSender);
 
     // implement the "static node()" method manually
