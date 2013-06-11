@@ -48,6 +48,12 @@ static const char rcLinkImages[] = "images/LinkObject/elem0-%d.png";
 
 static const char rcGameEndBackGround[] = "images/BackGround/GameEndBG.png";
 
+static const char rcOptionSwitchOn[] = "images/Button/switch-on.png";
+static const char rcOptionSwitchOff[] = "images/Button/switch-off.png";
+static const char rcOptionSwitchMask[] = "images/Button/switch-mask.png";
+static const char rcOptionSwitchThumb[] = "images/Button/switch-thumb.png";
+static const char rcOptionButtonBKG[] = "images/Button/buttonBackground.png";
+
 static const char rcCosData[] = "cosdata.xml";
 
 #endif
