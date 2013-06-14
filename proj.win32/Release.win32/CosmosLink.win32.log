@@ -1,5 +1,47 @@
-﻿生成启动时间为 2013/6/11 17:26:00。
+﻿生成启动时间为 2013/6/13 14:48:11。
+     1>项目“C:\Users\cfxw-mio\Dark_Flame_Master\CPP\VS2010工程\CosmosLink\proj.win32\CosmosLink.win32.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在对“Release.win32\CosmosLink.win32.unsuccessfulbuild”执行 Touch 任务。
+       ClCompile:
+         D:\software\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\include" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\kazmath\include" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\platform\win32" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\platform\third_party\win32" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\platform\third_party\win32\OGLES" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\external" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\CocosDenshion\include" /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGSNDEBUG /D _UNICODE /D UNICODE /Gm- /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release.win32\\" /Fd"Release.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\GalleryScene.cpp ..\Classes\MainMenuScene.cpp ..\Classes\OptionScene.cpp
+         GalleryScene.cpp
+     1>D:\software\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+         MainMenuScene.cpp
+     1>D:\software\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+         OptionScene.cpp
+     1>D:\software\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+         正在生成代码...
+       ResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D NDEBUG /D _UNICODE /D UNICODE /l"0x0409" /IRelease.win32\ /nologo /fo"Release.win32\CosmosLink.res" CosmosLink.rc 
+       Link:
+         D:\software\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\Release.win32\CosmosLink.win32.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\Release.win32\\" libcocos2d.lib libExtensions.lib opengl32.lib glew32.lib libBox2d.lib libCocosDenshion.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release.win32\CosmosLink.win32.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\Release.win32\CosmosLink.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\Release.win32\CosmosLink.win32.lib" /MACHINE:X86 Release.win32\CosmosLink.res
+         Release.win32\AppDelegate.obj
+         Release.win32\CosLogic.obj
+         Release.win32\CosScene.obj
+         Release.win32\DifficultyScene.obj
+         Release.win32\GalleryScene.obj
+         Release.win32\GameEndScene.obj
+         Release.win32\LevelSelectScene.obj
+         Release.win32\MainMenuScene.obj
+         Release.win32\OptionScene.obj
+         Release.win32\PlayingGameScene.obj
+         Release.win32\tinystr.obj
+         Release.win32\tinyxml.obj
+         Release.win32\tinyxmlerror.obj
+         Release.win32\tinyxmlparser.obj
+         Release.win32\VisibleRect.obj
+         Release.win32\main.obj
+         libExtensions.lib(CCTableView.obj) : 找到 MSIL .netmodule 或使用 /GL 编译的模块；正在使用 /LTCG 重新启动链接；将 /LTCG 添加到链接命令行以改进链接器性能
+         正在生成代码
+         已完成代码的生成
+         CosmosLink.win32.vcxproj -> C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\Release.win32\CosmosLink.win32.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\Release.win32\CosmosLink.win32.exe;#1" /manifest Release.win32\CosmosLink.win32.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         正在删除文件“Release.win32\CosmosLink.win32.unsuccessfulbuild”。
+         正在对“Release.win32\CosmosLink.win32.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“C:\Users\cfxw-mio\Dark_Flame_Master\CPP\VS2010工程\CosmosLink\proj.win32\CosmosLink.win32.vcxproj”(build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:00.03
+已用时间 00:00:08.59

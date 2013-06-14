@@ -1,0 +1,15 @@
+/proj.win32/Debug.win32/CosmosLink.res
+/proj.win32/Debug.win32/*.obj
+/proj.win32/Debug.win32/*.tlog
+/proj.win32/Release.win32/*.obj
+/proj.win32/Release.win32/*.tlog
+/proj.win32/Debug.win32/CosmosLink.win32.exe.embed.manifest
+/proj.win32/Debug.win32/CosmosLink.win32.exe.embed.manifest.res
+/proj.win32/Debug.win32/CosmosLink.win32.exe.intermediate.manifest
+/proj.win32/Debug.win32/CosmosLink.win32.lastbuildstate
+/proj.win32/Debug.win32/CosmosLink.win32_manifest.rc
+/proj.win32/Debug.win32/vc100.idb
+/proj.win32/Debug.win32/vc100.pdb
+/proj.win32/Release.win32/CosmosLink.res
+/proj.win32/Release.win32/CosmosLink.win32.exe.intermediate.manifest
+/proj.win32/Release.win32/CosmosLink.win32.lastbuildstate
