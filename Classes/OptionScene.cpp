@@ -16,7 +16,7 @@ void OptionScene::runThisTest()
 {
 	OptionLayer *pLayer = OptionLayer::create();
 	this->addChild(pLayer);
-	CCDirector::sharedDirector()->replaceScene(this);
+	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInR::create(0.5f, this));
 }
 
 OptionLayer::~OptionLayer()
@@ -113,6 +113,17 @@ bool OptionLayer::init()
         
         // Update the value label
         valueChangedMUSIC(switchControl, CCControlEventValueChanged);
+
+		// BackGround
+		CCSprite* pSprite = CCSprite::create(rcOptionBackGround);
+		if(pSprite){
+			// Place the sprite on the center of the screen
+			//pSprite->setAnchorPoint(ccp(0,0));
+			pSprite->setPosition(VisibleRect::center());
+
+			// Add the sprite to layer as a child layer.
+			this->addChild(pSprite, 0);
+		}
 
         return true;
     }

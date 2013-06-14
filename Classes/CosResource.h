@@ -14,10 +14,13 @@ static const char rcMainMenuItemGalleryNormal[] = "images/MenuItem/GalleryNormal
 static const char rcMainMenuItemGallerySelected[] = "images/MenuItem/GallerySelected.png";
 static const char rcMainMenuItemEndNormal[] = "images/MenuItem/EndNormal.png";
 static const char rcMainMenuItemEndSelected[] = "images/MenuItem/EndSelected.png";
+
 static const char rcGameEndItemBackNormal[] = "images/MenuItem/BackNormal.png";
 static const char rcGameEndItemBackSelected[] = "images/MenuItem/BackSelected.png";
 static const char rcGameEndItemRestartNormal[] = "images/MenuItem/RestartNormal.png";
 static const char rcGameEndItemRestartSelected[] = "images/MenuItem/RestartSelected.png";
+
+static const char rcDifficultyBackGround[] = "images/BackGround/DifficultyBG.png";
 static const char rcDifficultyItemEasyNormal[] = "images/MenuItem/EasyNormal.png";
 static const char rcDifficultyItemEasySelected[] = "images/MenuItem/EasySelected.png";
 static const char rcDifficultyItemNormalNormal[] = "images/MenuItem/NormalNormal.png";
@@ -48,6 +51,9 @@ static const char rcLinkImages[] = "images/LinkObject/elem0-%d.png";
 
 static const char rcGameEndBackGround[] = "images/BackGround/GameEndBG.png";
 
+static const char rcGalleryBackGround[] = "images/BackGround/GalleryBG.png";
+
+static const char rcOptionBackGround[] = "images/BackGround/OptionBG.png";/*images/BackGround/MainMenuBG.png*/
 static const char rcOptionSwitchOn[] = "images/Button/switch-on.png";
 static const char rcOptionSwitchOff[] = "images/Button/switch-off.png";
 static const char rcOptionSwitchMask[] = "images/Button/switch-mask.png";

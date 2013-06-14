@@ -134,7 +134,7 @@ void CosGame::expand_search_point(std::vector<SP> &searched, std::queue<SP> &opc
 {
 	searched.push_back(point_to_search);
 	int dx,dy;
-	
+
 	//ËÑË÷UP
 	dx = point_to_search.x, dy = point_to_search.y+1;
 	while(dy < BoardVer && Board[dy][dx] == LINK_NULL){
@@ -238,11 +238,28 @@ bool CosGame::isLinkable(int x1, int y1, int x2, int y2)
 
 bool CosGame::isAllClear()
 {
-	for(int i = 0; i < VerNum; ++i)
-		for(int j = 0; j < HorNum; ++j)
+	for(int i = 1; i <= VerNum; ++i)
+		for(int j = 1; j <= HorNum; ++j)
 			if(Board[i][j] != LINK_NULL)
 				return false;
 	return true;
+}
+
+bool CosGame::isContinuable()//¼ì²âÓÎÏ·ÊÇ·ñÄÜ¼ÌÐø
+{
+	for(int i = 1; i <= VerNum; ++i)
+		for(int j = 1; j <= HorNum; ++j)
+		if(Board[i][j] != LINK_NULL)
+		{
+			for(int k = i; k <= VerNum; ++k)
+				for(int l = 1; l <= HorNum; ++l)
+				{
+					if(Board[i][j] == Board[k][l])
+						if(isLinkable(j,i,l,k))
+							return true;
+				}
+		}
+	return false;
 }
 
 }

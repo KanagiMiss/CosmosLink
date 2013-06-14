@@ -41,7 +41,7 @@ enum Game_Difficulty{
 	HARD
 };
 
-static const int LINK_NULL = 15;
+static const int LINK_NULL = 100;
 //static const int LINK_TYPE_COUNT = 10;
 
 class CosGame
@@ -70,6 +70,7 @@ public:
 	void incGameTime(double inc){GameTime += inc;};
 	
 	bool isInLinkArea(int x, int y);//检测这个点是否在连连看图片区域内
+	bool isContinuable();//检测游戏是否能继续
 	bool isLinkable(int x1, int y1, int x2, int y2);//检测两个连连看元素是否能够相消
 	bool isAllClear();//检测是否所有的连连看方块都被消去
 

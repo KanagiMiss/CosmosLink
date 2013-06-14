@@ -11,7 +11,7 @@ void GalleryScene::runThisTest()
 {
 	GalleryLayer *pLayer = GalleryLayer::create();
 	this->addChild(pLayer);
-	CCDirector::sharedDirector()->replaceScene(this);
+	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInB::create(0.5f, this));
 }
 
 void CustomTableViewCell::draw()
@@ -48,13 +48,26 @@ bool GalleryLayer::init()
     tableView->reloadData();
 	*/
 
-	CCTableView* tableView = CCTableView::create(this, CCSizeMake(70, VisibleRect::top().y-VisibleRect::bottom().y));
+	float height = (VisibleRect::top().y-VisibleRect::bottom().y)*(2.0/3.0);
+	CCTableView* tableView = CCTableView::create(this, CCSizeMake(70, height));
 	tableView->setDirection(kCCScrollViewDirectionVertical);
-	tableView->setPosition(ccp(VisibleRect::leftBottom().x+20,VisibleRect::leftBottom().y));
+	tableView->setPosition(ccp(VisibleRect::left().x+50,VisibleRect::left().y-height/2));
+	//tableView->setAnchorPoint(ccp(1,1));
 	tableView->setDelegate(this);
 	tableView->setVerticalFillOrder(kCCTableViewFillTopDown);
-	this->addChild(tableView);
+	this->addChild(tableView,1);
 	tableView->reloadData();
+
+	// BackGround
+	CCSprite* pSprite = CCSprite::create(rcGalleryBackGround);
+	if(pSprite){
+		// Place the sprite on the center of the screen
+		//pSprite->setAnchorPoint(ccp(0,0));
+		pSprite->setPosition(VisibleRect::center());
+
+		// Add the sprite to layer as a child layer.
+		this->addChild(pSprite, 0);
+	}
 
     return true;
 }

@@ -57,13 +57,13 @@ bool MainMenuScene::init()
 		//CCMenuItemImage *pCloseItem = CCMenuItemImage::create(rcMainMenuItemCloseNormal, rcMainMenuItemCloseSelected, this, menu_selector(MainMenuScene::menuCloseCallback));
 
 		//pCloseItem->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20));
-		pStartItem->setPosition(ccp(VisibleRect::center().x,VisibleRect::center().y));
-		pGalleryItem->setPosition(ccp(VisibleRect::center().x,VisibleRect::center().y-50));
-		pOptionItem->setPosition(ccp(VisibleRect::center().x,VisibleRect::center().y-100));
+		pStartItem->setPosition(ccp(VisibleRect::rightTop().x*(1.0/5.0),VisibleRect::rightTop().y/7));
+		pGalleryItem->setPosition(ccp(VisibleRect::center().x,VisibleRect::rightTop().y/7));
+		pOptionItem->setPosition(ccp(VisibleRect::rightTop().x*(4.0/5.0),VisibleRect::rightTop().y/7));
 		pEndItem->setPosition(ccp(VisibleRect::center().x,VisibleRect::center().y-150));
 
 		// Create a menu with the "close" menu item, it's an auto release object.
-		CCMenu* pMenu = CCMenu::create(pStartItem, pGalleryItem, pOptionItem, pEndItem, NULL);
+		CCMenu* pMenu = CCMenu::create(pStartItem, pGalleryItem, pOptionItem, /*pEndItem,*/ NULL);
 		pMenu->setPosition(CCPointZero);
 		CC_BREAK_IF(! pMenu);
 

@@ -12,8 +12,7 @@ void DifficultyScene::runThisTest()
 	CCLayer *pLayer = new DifficultyLayer();
 	pLayer->autorelease();
 	addChild(pLayer);
-
-	CCDirector::sharedDirector()->replaceScene(this);
+	CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInT::create(0.5f, this));
 }
 
 void DifficultyLayer::onEnter()
@@ -25,15 +24,26 @@ void DifficultyLayer::onEnter()
 	CCMenuItemImage *pNormalItem = CCMenuItemImage::create(rcDifficultyItemNormalNormal, rcDifficultyItemNormalSelected, this, menu_selector(DifficultyLayer::NormalCallback)); 
 	CCMenuItemImage *pHardItem = CCMenuItemImage::create(rcDifficultyItemHardNormal, rcDifficultyItemHardSelected, this, menu_selector(DifficultyLayer::HardCallback)); 
 
-	pEasyItem->setPosition(ccp(VisibleRect::center().x-250,VisibleRect::center().y));
+	pEasyItem->setPosition(ccp(VisibleRect::right().x*(1.0/5.0),VisibleRect::center().y));
 	pNormalItem->setPosition(ccp(VisibleRect::center().x,VisibleRect::center().y));
-	pHardItem->setPosition(ccp(VisibleRect::center().x+250,VisibleRect::center().y));
+	pHardItem->setPosition(ccp(VisibleRect::right().x*(4.0/5.0),VisibleRect::center().y));
 
 	CCMenu* pMenu = CCMenu::create(pEasyItem, pNormalItem, pHardItem, NULL);
 	pMenu->setPosition(CCPointZero);
 
 	this->addChild(pMenu, 1);
 	//end create menu item
+
+	// BackGround
+		CCSprite* pSprite = CCSprite::create(rcDifficultyBackGround);
+		if(pSprite){
+			// Place the sprite on the center of the screen
+			//pSprite->setAnchorPoint(ccp(0,0));
+			pSprite->setPosition(VisibleRect::center());
+
+			// Add the sprite to layer as a child layer.
+			this->addChild(pSprite, 0);
+		}
 }
 
 void DifficultyLayer::onExit()

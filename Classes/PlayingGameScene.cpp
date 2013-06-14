@@ -25,7 +25,7 @@ void PlayingGameScene::runThisTest()
 	pLayer->autorelease();
 	addChild(pLayer);
 
-	CCDirector::sharedDirector()->replaceScene(this);
+	CCDirector::sharedDirector()->replaceScene(FadeWhiteTransition::create(0.4f,this));
 }
 
 bool PlayingGameLayer::loadConfigFromFile()
@@ -194,13 +194,14 @@ void PlayingGameLayer::onEnter()
 	pScore = CCLabelTTF::create(tempstr, "Arial", 25);
 	pScore->setPosition(VisibleRect::rightTop());
 	pScore->setAnchorPoint(ccp(1,1));
-	addChild(pScore);
+	addChild(pScore,1);
 	//set initial time
 	sprintf(tempstr,"%.2lf",m_lfTimeLimit - pGame->getGameTime());
 	pTimer = CCLabelTTF::create(tempstr, "Arial", 25);
 	pTimer->setPosition(VisibleRect::leftTop());
 	pTimer->setAnchorPoint(ccp(0,1));
-	addChild(pTimer);
+	if(pGame->getDiffculty() == cosmos::HARD)
+		addChild(pTimer,1);
 	//set game loop
 	this->schedule(schedule_selector(PlayingGameLayer::GameLoop),0.1f);
 }
@@ -224,9 +225,11 @@ void PlayingGameLayer::GameLoop(float f)
 	pGame->incGameTime(f);
 	//update game time (include reward time)
 	m_lfCurrTime -= f;
-	updateTime();
-	if(m_lfCurrTime < 0){
+	if(pGame->getDiffculty() == cosmos::HARD)
+		updateTime();
+	if(m_lfCurrTime < 0 && (pGame->getDiffculty() == cosmos::HARD)){
 		gotoEndGameScene(false);//failed
+		return;
 	}
 	if(isChangeScore){
 		runChangeScore();
@@ -235,9 +238,9 @@ void PlayingGameLayer::GameLoop(float f)
 
 void PlayingGameLayer::updateTime()
 {
-	char tempstr[20]={};
-	sprintf(tempstr,"%.2lf",m_lfCurrTime);
-	pTimer->setString(tempstr);
+		char tempstr[20]={};
+		sprintf(tempstr,"%.2lf",m_lfCurrTime);
+		pTimer->setString(tempstr);
 }
 
 void PlayingGameLayer::runChangeScore()
@@ -328,6 +331,16 @@ void PlayingGameLayer::updateAndRender(const cocos2d::CCPoint &p)
 			//分数奖励
 			pGame->addGameScore(50+50*(1-exp(-m_lfRewardInc*0.2)));
 			changeScoreTo(pGame->getGameScore());
+			//检测游戏是否赢		
+			if(pGame->isAllClear()){
+				gotoEndGameScene(true);
+				return;
+			}
+			//检测游戏是否能继续
+			if(!pGame->isContinuable()){
+				gotoEndGameScene(false);//failed
+				return;
+			}
 		}
 		else{
 			m_lfRewardInc = 0;
@@ -362,10 +375,6 @@ void PlayingGameLayer::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent
 #endif
 
 	updateAndRender(touchLocation);
-
-	if(pGame->isAllClear()){
-		gotoEndGameScene(true);
-	}
 }
 
 void PlayingGameLayer::touchDelegateRetain()

@@ -99,7 +99,7 @@ void LevelSelectScene::runThisTest()
 	s_nActionIdx = -1;
     addChild(NextAction());
 
-    CCDirector::sharedDirector()->replaceScene(this);
+    CCDirector::sharedDirector()->replaceScene(CCTransitionSlideInT::create(0.5f, this));
 }
 
 LevelSelectLayer::LevelSelectLayer(std::string name):
@@ -119,11 +119,15 @@ void LevelSelectLayer::onEnter()
     CCMenu *menu = CCMenu::create(item1, item2, item3, NULL);
 
     menu->setPosition(CCPointZero);
-    item1->setPosition(ccp(VisibleRect::center().x - item2->getContentSize().width*2, VisibleRect::bottom().y+item2->getContentSize().height/2));
-    item2->setPosition(ccp(VisibleRect::center().x, VisibleRect::bottom().y+item2->getContentSize().height/2));
-    item3->setPosition(ccp(VisibleRect::center().x + item2->getContentSize().width*2, VisibleRect::bottom().y+item2->getContentSize().height/2));
+	item1->setPosition(VisibleRect::left());
+	item2->setPosition(VisibleRect::bottom());
+	item3->setPosition(VisibleRect::right());
 
-    addChild(menu, 0);
+	item1->setAnchorPoint(ccp(0,0.5));
+	item2->setAnchorPoint(ccp(0.5,0));
+	item3->setAnchorPoint(ccp(1,0.5));
+
+    addChild(menu, 1);
 
 	CCSprite* pSprite = CCSprite::create(capture_name.c_str());
 
@@ -167,7 +171,7 @@ void LevelSelectLayer::nextCallback(CCObject* pSender)
 {
 	CCScene* s = new LevelSelectScene();
     s->addChild( NextAction() );
-    CCDirector::sharedDirector()->replaceScene(s);
+	CCDirector::sharedDirector()->replaceScene(PageTransitionForward::create(0.6f,s));
     s->release();
 }
 
@@ -175,6 +179,6 @@ void LevelSelectLayer::backCallback(CCObject* pSender)
 {
 	CCScene* s = new LevelSelectScene();
     s->addChild( BackAction() );
-    CCDirector::sharedDirector()->replaceScene(s);
+	CCDirector::sharedDirector()->replaceScene(PageTransitionBackward::create(0.6f,s));
     s->release();
 }
