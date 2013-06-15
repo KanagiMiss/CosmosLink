@@ -19,14 +19,14 @@ void CosScene::onEnter()
 //#if (CC_TARGET_PLATFORM == CC_PLATFORM_MARMALADE)
 //    CCLabelBMFont* label = CCLabelBMFont::create("MainMenu",  "fonts/arial16.fnt");
 //#else
-    CCLabelTTF* label = CCLabelTTF::create("MainMenu", "Arial", 20);
+    //CCLabelTTF* label = CCLabelTTF::create("MainMenu", "Arial", 20);
 //#endif
-    CCMenuItemLabel* pMenuItem = CCMenuItemLabel::create(label, this, menu_selector(CosScene::MainMenuCallback));
-
-    CCMenu* pMenu =CCMenu::create(pMenuItem, NULL);
+    //CCMenuItemLabel* pMenuItem = CCMenuItemLabel::create(label, this, menu_selector(CosScene::MainMenuCallback));
+	CCMenuItemImage *pMMItem = CCMenuItemImage::create(rcMainMenuNormal, rcMainMenuSelected, this, menu_selector(CosScene::MainMenuCallback));
+    CCMenu* pMenu =CCMenu::create(pMMItem, NULL);
 
     pMenu->setPosition( CCPointZero );
-    pMenuItem->setPosition( ccp( VisibleRect::right().x - 75, VisibleRect::bottom().y + 25) );
+    pMMItem->setPosition( ccp( VisibleRect::right().x - 75, VisibleRect::bottom().y + 25) );
 
     addChild(pMenu, 1);
 }

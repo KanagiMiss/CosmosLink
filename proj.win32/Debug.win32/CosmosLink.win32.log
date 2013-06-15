@@ -1,12 +1,10 @@
-﻿生成启动时间为 2013/6/14 20:05:40。
+﻿生成启动时间为 2013/6/16 1:22:44。
      1>项目“C:\Users\cfxw-mio\Dark_Flame_Master\CPP\VS2010工程\CosmosLink\proj.win32\CosmosLink.win32.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
          正在创建“Debug.win32\CosmosLink.win32.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        ClCompile:
-         D:\software\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\include" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\kazmath\include" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\platform\win32" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\platform\third_party\win32" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\platform\third_party\win32\OGLES" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\external" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\CocosDenshion\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\CosLogic.cpp
-         CosLogic.cpp
-     1>c:\users\cfxw-mio\dark_flame_master\cpp\vs2010工程\cosmoslink\classes\coslogic.cpp(40): warning C4101: “j”: 未引用的局部变量
-     1>c:\users\cfxw-mio\dark_flame_master\cpp\vs2010工程\cosmoslink\classes\coslogic.cpp(92): warning C4101: “NeedRanNum”: 未引用的局部变量
+         D:\software\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\include" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\kazmath\include" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\platform\win32" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\platform\third_party\win32" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\platform\third_party\win32\OGLES" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\external" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\CocosDenshion\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\MainMenuScene.cpp
+         MainMenuScene.cpp
        ResourceCompile:
          所有输出均为最新。
        ManifestResourceCompile:
@@ -43,4 +41,4 @@
 
 生成成功。
 
-已用时间 00:00:04.57
+已用时间 00:00:05.79

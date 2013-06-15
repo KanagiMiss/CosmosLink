@@ -52,6 +52,9 @@ static const char rcLinkImages[] = "images/LinkObject/elem0-%d.png";
 static const char rcGameEndBackGround[] = "images/BackGround/GameEndBG.png";
 
 static const char rcGalleryBackGround[] = "images/BackGround/GalleryBG.png";
+static const char rcGallerySquare[] = "images/Element/GallSquare.png";
+static const char rcGalleryTriangleUp[] = "images/Element/GallTriUp.png";
+static const char rcGalleryTriangleDown[] = "images/Element/GallTriDown.png";
 
 static const char rcOptionBackGround[] = "images/BackGround/OptionBG.png";/*images/BackGround/MainMenuBG.png*/
 static const char rcOptionSwitchOn[] = "images/Button/switch-on.png";
@@ -59,6 +62,11 @@ static const char rcOptionSwitchOff[] = "images/Button/switch-off.png";
 static const char rcOptionSwitchMask[] = "images/Button/switch-mask.png";
 static const char rcOptionSwitchThumb[] = "images/Button/switch-thumb.png";
 static const char rcOptionButtonBKG[] = "images/Button/buttonBackground.png";
+
+static const char rcMainMenuNormal[] = "images/MenuItem/MainMenuNormal.png";
+static const char rcMainMenuSelected[] = "images/MenuItem/MainMenuSelected.png";
+
+static const char rcTitle[] = "images/Element/title.png";
 
 static const char rcCosData[] = "cosdata.xml";
 

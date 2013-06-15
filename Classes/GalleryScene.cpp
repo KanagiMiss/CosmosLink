@@ -48,10 +48,20 @@ bool GalleryLayer::init()
     tableView->reloadData();
 	*/
 
+	/*
+	------
+	|    |
+	|    |
+	|    |
+	|    |
+	*-----  <----- this point
+	*/
+	float width = 70;
 	float height = (VisibleRect::top().y-VisibleRect::bottom().y)*(2.0/3.0);
-	CCTableView* tableView = CCTableView::create(this, CCSizeMake(70, height));
+	CCPoint pos(ccp(VisibleRect::left().x+50,VisibleRect::left().y-height/2));
+	CCTableView* tableView = CCTableView::create(this, CCSizeMake(width, height));
 	tableView->setDirection(kCCScrollViewDirectionVertical);
-	tableView->setPosition(ccp(VisibleRect::left().x+50,VisibleRect::left().y-height/2));
+	tableView->setPosition(pos);
 	//tableView->setAnchorPoint(ccp(1,1));
 	tableView->setDelegate(this);
 	tableView->setVerticalFillOrder(kCCTableViewFillTopDown);
@@ -68,6 +78,24 @@ bool GalleryLayer::init()
 		// Add the sprite to layer as a child layer.
 		this->addChild(pSprite, 0);
 	}
+
+	//elements
+	CCSprite *pTriUp = CCSprite::create(rcGalleryTriangleUp);
+	CCSprite *pTriDown = CCSprite::create(rcGalleryTriangleDown);
+	CCSprite *pSquare = CCSprite::create(rcGallerySquare);
+
+	pTriDown->setPosition(ccp(pos.x+width/2.0f, pos.y+height));
+	pTriDown->setAnchorPoint(ccp(0.5,0));
+
+	pTriUp->setPosition(ccp(pos.x+width/2.0f, pos.y));
+	pTriUp->setAnchorPoint(ccp(0.5,1));
+
+	pSquare->setPosition(ccp(VisibleRect::right().x*(1.1f/2.0f),VisibleRect::center().y));
+	pSquare->setAnchorPoint(ccp(0.5,0.5));
+	
+	this->addChild(pTriUp,2);
+	this->addChild(pTriDown,2);
+	this->addChild(pSquare,1);
 
     return true;
 }

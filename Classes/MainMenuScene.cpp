@@ -80,6 +80,13 @@ bool MainMenuScene::init()
 			// Add the sprite to HelloWorld layer as a child layer.
 			this->addChild(pSprite, 0);
 		}
+		// Title
+		CCSprite *pTitle = CCSprite::create(rcTitle);
+		if(pTitle){
+			pTitle->setPosition(ccp(VisibleRect::center().x,VisibleRect::top().y*(3.5f/5.0f)));
+			this->addChild(pTitle,1);
+		}
+
 		createGame();	//create game logic
 
 		bRet = true;
