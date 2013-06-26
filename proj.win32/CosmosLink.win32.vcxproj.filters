@@ -205,6 +205,9 @@
     <ClInclude Include="..\Classes\GalleryScene.h">
       <Filter>include\SCENE</Filter>
     </ClInclude>
+    <ClInclude Include="KUtils.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

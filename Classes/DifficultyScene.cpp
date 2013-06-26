@@ -19,16 +19,21 @@ void DifficultyLayer::onEnter()
 {
 	CCLayer::onEnter();
 
+	//create title
+	CCLabelBMFont *pLabelTitle = CCLabelBMFont::labelWithString("游戏模式选择", rcImageFont40);
+	pLabelTitle->setPosition(ccp(VisibleRect::center().x, VisibleRect::top().y*(1.0f/4.0f)));
+	this->addChild(pLabelTitle,1);
+
 	//create menu item
 	CCMenuItemImage *pEasyItem = CCMenuItemImage::create(rcDifficultyItemEasyNormal, rcDifficultyItemEasySelected, this, menu_selector(DifficultyLayer::EasyCallback));
 	CCMenuItemImage *pNormalItem = CCMenuItemImage::create(rcDifficultyItemNormalNormal, rcDifficultyItemNormalSelected, this, menu_selector(DifficultyLayer::NormalCallback)); 
 	CCMenuItemImage *pHardItem = CCMenuItemImage::create(rcDifficultyItemHardNormal, rcDifficultyItemHardSelected, this, menu_selector(DifficultyLayer::HardCallback)); 
 
 	pEasyItem->setPosition(ccp(VisibleRect::right().x*(1.0/5.0),VisibleRect::center().y));
-	pNormalItem->setPosition(ccp(VisibleRect::center().x,VisibleRect::center().y));
-	pHardItem->setPosition(ccp(VisibleRect::right().x*(4.0/5.0),VisibleRect::center().y));
+	pNormalItem->setPosition(ccp(VisibleRect::right().x*(1.0f/4.0f),VisibleRect::center().y));
+	pHardItem->setPosition(ccp(VisibleRect::right().x*(3.0f/4.0f),VisibleRect::center().y));
 
-	CCMenu* pMenu = CCMenu::create(pEasyItem, pNormalItem, pHardItem, NULL);
+	CCMenu* pMenu = CCMenu::create(/*pEasyItem, */pNormalItem, pHardItem, NULL);
 	pMenu->setPosition(CCPointZero);
 
 	this->addChild(pMenu, 1);

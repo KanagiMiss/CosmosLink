@@ -2,6 +2,7 @@
 #include "CosLogic.h"
 #include "CosResource.h"
 #include "VisibleRect.h"
+#include "KUtils.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -37,11 +38,12 @@ bool OptionLayer::init()
         addChild(layer, 1);
 		
 		CCPoint origin;
+		cosmos::CosGame *pGame = cosmos::CosGame::getInstance();
 
 		/////////////////////////////////////// Add sfx btn ///////////////////////////////////////
 		// Add the black background for the text
 		origin = ccp(VisibleRect::left().x,VisibleRect::left().y/2+80);
-		CCLabelTTF *pLabelSFX = CCLabelTTF::create("SFX:" ,"Marker Felt" ,50);
+		CCLabelBMFont *pLabelSFX = CCLabelBMFont::labelWithString("SFX", rcImageFont40);
 		pLabelSFX->setPosition(origin);
 		layer->addChild(pLabelSFX);
 
@@ -72,7 +74,8 @@ bool OptionLayer::init()
         layer->addChild(switchControl);
 
         switchControl->addTargetWithActionForControlEvents(this, cccontrol_selector(OptionLayer::valueChangedSFX), CCControlEventValueChanged);
-        
+		switchControl->setOn(pGame->getConfig().isSFXOn);
+
         // Update the value label
         valueChangedSFX(switchControl, CCControlEventValueChanged);
 
@@ -80,7 +83,7 @@ bool OptionLayer::init()
 		/////////////////////////////////////// Add music btn ///////////////////////////////////////
 		
 		origin = ccp(VisibleRect::right().x/2-100,VisibleRect::right().y/2+80);
-		CCLabelTTF *pLabelMUSIC = CCLabelTTF::create("MUSIC:" ,"Marker Felt" ,50);
+		CCLabelBMFont *pLabelMUSIC = CCLabelBMFont::labelWithString("MUSIC", rcImageFont40);
 		pLabelMUSIC->setPosition(origin);
 		layer->addChild(pLabelMUSIC);
 
@@ -110,7 +113,8 @@ bool OptionLayer::init()
         layer->addChild(switchControl);
 
         switchControl->addTargetWithActionForControlEvents(this, cccontrol_selector(OptionLayer::valueChangedMUSIC), CCControlEventValueChanged);
-        
+		switchControl->setOn(pGame->getConfig().isMusicOn);
+
         // Update the value label
         valueChangedMUSIC(switchControl, CCControlEventValueChanged);
 
@@ -133,25 +137,37 @@ bool OptionLayer::init()
 void OptionLayer::valueChangedSFX(CCObject* sender, CCControlEvent controlEvent)
 {
 	CCControlSwitch* pSwitch = (CCControlSwitch*)sender;
+	cosmos::CosGame *pGame = cosmos::CosGame::getInstance();
+	cosmos::COSCONFIG config = pGame->getConfig();
     if (pSwitch->isOn())
     {
         m_pDisplayValueLabel_SFX->setString("On");
+		config.isSFXOn = true;
     } 
     else
     {
         m_pDisplayValueLabel_SFX->setString("Off");
+		config.isSFXOn = false;
     }
+	pGame->saveConfig(config);
 }
 
 void OptionLayer::valueChangedMUSIC(cocos2d::CCObject* sender, cocos2d::extension::CCControlEvent controlEvent)
 {
 	CCControlSwitch* pSwitch = (CCControlSwitch*)sender;
+	cosmos::CosGame *pGame = cosmos::CosGame::getInstance();
+	cosmos::COSCONFIG config = pGame->getConfig();
     if (pSwitch->isOn())
     {
         m_pDisplayValueLabel_MUSIC->setString("On");
+		config.isMusicOn = true;
+		KUtils::playMusic(rcSoundMainBGM);
     } 
     else
     {
         m_pDisplayValueLabel_MUSIC->setString("Off");
+		config.isMusicOn = false;
+		KUtils::stopMusic();
     }
+	pGame->saveConfig(config);
 }

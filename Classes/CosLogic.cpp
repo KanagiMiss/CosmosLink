@@ -1,8 +1,11 @@
 #include "CosLogic.h"
+#include <string>
 #include <ctime>
 #include <queue>
 #include <vector>
 #include <algorithm>
+#include <climits>
+#include "KUtils.h"
 
 #define __KDEBUG__
 
@@ -260,6 +263,70 @@ bool CosGame::isContinuable()//检测游戏是否能继续
 				}
 		}
 	return false;
+}
+
+void CosGame::saveConfig(const COSCONFIG &config)
+{
+	this->config = config;
+	SaveBooleanToXML("IsMusicOn", config.isMusicOn);
+	SaveBooleanToXML("IsSFXOn", config.isSFXOn);
+}
+
+void CosGame::loadConfig()
+{
+	this->config.isMusicOn = LoadBooleanFromXML("IsMusicOn");
+	this->config.isSFXOn = LoadBooleanFromXML("IsSFXOn");
+}
+
+bool CosGame::updateGallery()
+{
+	bool revice = false;
+	switch(CurrentDiff)
+	{
+	case NORMAL:
+		{
+			if(this->gallery.maxScoreNormal < GameScore){
+				this->gallery.maxScoreNormal = GameScore;
+				revice = true;
+			}
+			if(this->gallery.minTimeNormal > GameTime || static_cast<int>(this->gallery.minTimeNormal) == 0){
+				this->gallery.minTimeNormal = GameTime;
+				revice = true;
+			}
+			break;
+		}
+	case HARD:
+		{
+			if(this->gallery.maxScoreHard < GameScore){
+				this->gallery.maxScoreHard = GameScore;
+				revice = true;
+			}
+			if(this->gallery.minTimeHard > GameTime || static_cast<int>(this->gallery.minTimeHard) == 0){
+				this->gallery.minTimeHard = GameTime;
+				revice = true;
+			}
+			break;
+		}
+	}
+
+	if(revice){
+		SaveIntegerToXML("MaxScoreHard", this->gallery.maxScoreHard);
+		SaveIntegerToXML("MaxScoreNormal", this->gallery.maxScoreNormal);
+		SaveDoubleToXML("MinTimeHard", this->gallery.minTimeHard);
+		SaveDoubleToXML("MinTimeNormal", this->gallery.minTimeNormal);
+	}
+	return revice;
+}
+
+void CosGame::loadGallery()
+{
+#ifdef __KDEBUG__
+	std::cout << std::string("UserDefault file path: ") + cocos2d::CCUserDefault::sharedUserDefault()->getXMLFilePath() << std::endl;
+#endif
+	this->gallery.maxScoreHard = LoadIntegerFromXML("MaxScoreHard",0);
+	this->gallery.maxScoreNormal = LoadIntegerFromXML("MaxScoreNormal",0);
+	this->gallery.minTimeHard = LoadDoubleFromXML("MinTimeHard",0);
+	this->gallery.minTimeNormal = LoadDoubleFromXML("MinTimeNormal",0);
 }
 
 }

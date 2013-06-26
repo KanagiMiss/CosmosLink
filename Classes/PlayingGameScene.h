@@ -39,12 +39,13 @@ public:
 	virtual void touchDelegateRelease();
 
 private:
+	int mTmpScore;
 	int nDstScore;
 	bool isChangeScore;
 	void runChangeScore();
 
-	cocos2d::CCLabelTTF *pScore;//分数
-	cocos2d::CCLabelTTF *pTimer;//时间
+	cocos2d::CCLabelBMFont *pScore;//分数
+	cocos2d::CCLabelBMFont *pTimer;//时间
 	//cocos2d::CCTimer *pGameLoopTimer;//游戏计时器
 	cosmos::CosGame *pGame;
 	std::vector<cocos2d::CCSprite *> m_pAllImages;//存储所有连连看图像指针

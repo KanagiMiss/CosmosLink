@@ -1,5 +1,7 @@
 #include "VisibleRect.h"
 
+using namespace cocos2d;
+
 CCRect VisibleRect::s_visibleRect;
 
 void VisibleRect::lazyInit()

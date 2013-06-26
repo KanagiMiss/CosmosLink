@@ -2,25 +2,24 @@
 #define __VISIBLERECT_H__
 
 #include "cocos2d.h"
-USING_NS_CC;
 
-class VisibleRect
+;class VisibleRect
 {
 public:
-    static CCRect getVisibleRect();
+    static cocos2d::CCRect getVisibleRect();
 
-    static CCPoint left();
-    static CCPoint right();
-    static CCPoint top();
-    static CCPoint bottom();
-    static CCPoint center();
-    static CCPoint leftTop();
-    static CCPoint rightTop();
-    static CCPoint leftBottom();
-    static CCPoint rightBottom();
+    static cocos2d::CCPoint left();
+    static cocos2d::CCPoint right();
+    static cocos2d::CCPoint top();
+    static cocos2d::CCPoint bottom();
+    static cocos2d::CCPoint center();
+    static cocos2d::CCPoint leftTop();
+    static cocos2d::CCPoint rightTop();
+    static cocos2d::CCPoint leftBottom();
+    static cocos2d::CCPoint rightBottom();
 private:
     static void lazyInit();
-    static CCRect s_visibleRect;
+    static cocos2d::CCRect s_visibleRect;
 };
 
 #endif /* __VISIBLERECT_H__ */

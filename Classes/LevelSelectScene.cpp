@@ -3,8 +3,10 @@
 #include "CosLogic.h"
 #include "CosResource.h"
 #include "VisibleRect.h"
+#include "KUtils.h"
 
 using namespace cocos2d;
+using namespace CocosDenshion;
 
 CCLayer* NextAction();
 CCLayer* BackAction();
@@ -15,48 +17,11 @@ static int s_nActionIdx = -1;
 static CCLayer* CreateLayer(int nIndex)
 {
     CCLayer * pLayer = NULL;
-
-    switch (nIndex)
-    {
-	case 0:
-		pLayer = new LevelSelectLayer(rcLevel0Capture);
-		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(0));
-		break;
-	case 1:
-		pLayer = new LevelSelectLayer(rcLevel1Capture);
-		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(1));
-		break;
-	case 2:
-		pLayer = new LevelSelectLayer(rcLevel2Capture);
-		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(2));
-		break;
-	case 3:
-		pLayer = new LevelSelectLayer(rcLevel3Capture);
-		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(3));
-		break;
-	case 4:
-		pLayer = new LevelSelectLayer(rcLevel4Capture);
-		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(4));
-		break;
-	case 5:
-		pLayer = new LevelSelectLayer(rcLevel5Capture);
-		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(5));
-		break;
-	case 6:
-		pLayer = new LevelSelectLayer(rcLevel6Capture);
-		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(6));
-		break;
-	case 7:
-		pLayer = new LevelSelectLayer(rcLevel7Capture);
-		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(7));
-		break;
-	case 8:
-		pLayer = new LevelSelectLayer(rcLevel8Capture);
-		cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(8));
-		break;
-	default:break;
-    }
-
+	char tempStr[30] = {""};
+	memset(tempStr,0,sizeof(tempStr));
+    sprintf(tempStr,rcLevelCapture,nIndex+1);
+	pLayer = new LevelSelectLayer(tempStr);
+	cosmos::CosGame::getInstance()->chooseLevel(static_cast<cosmos::Game_Level>(nIndex));
     return pLayer;
 }
 
@@ -138,6 +103,12 @@ void LevelSelectLayer::onEnter()
 	// Add the sprite to HelloWorld layer as a child layer.
 	addChild(pSprite, 1);
 
+	// load font
+	//create title
+	CCLabelBMFont *pLabelTitle = CCLabelBMFont::labelWithString("选择关卡主题", rcImageFont45);
+	pLabelTitle->setPosition(ccp(VisibleRect::center().x, VisibleRect::top().y-50));
+	this->addChild(pLabelTitle,1);
+
 	//load background
 	CCSprite* pBack = CCSprite::create(rcLevelSelectBackGround);
 	if(pBack){
@@ -159,7 +130,7 @@ void LevelSelectLayer::enterCallback(CCObject* pSender)
 {
 	cosmos::CosGame *pGame = cosmos::CosGame::getInstance();
 	pGame->startGame();
-
+	KUtils::playSound(rcSoundGameStart);
 	PlayingGameScene *pScene = new PlayingGameScene();
 	if(pScene){
 		pScene->runThisTest();
@@ -172,6 +143,8 @@ void LevelSelectLayer::nextCallback(CCObject* pSender)
 	CCScene* s = new LevelSelectScene();
     s->addChild( NextAction() );
 	CCDirector::sharedDirector()->replaceScene(PageTransitionForward::create(0.6f,s));
+	//播放音效
+	KUtils::playSound(rcSoundBook);
     s->release();
 }
 
@@ -180,5 +153,7 @@ void LevelSelectLayer::backCallback(CCObject* pSender)
 	CCScene* s = new LevelSelectScene();
     s->addChild( BackAction() );
 	CCDirector::sharedDirector()->replaceScene(PageTransitionBackward::create(0.6f,s));
+	//播放音效
+	SimpleAudioEngine::sharedEngine()->playEffect(std::string(CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(rcSoundBook)).c_str());
     s->release();
 }

@@ -3,6 +3,7 @@
 #include "MainMenuScene.h"
 #include "CosResource.h"
 #include "VisibleRect.h"
+#include "KUtils.h"
 
 using namespace cocos2d;
 
@@ -39,6 +40,7 @@ void CosScene::MainMenuCallback(CCObject* pSender)
     CCScene* pScene = CCScene::create();
 	MainMenuScene* pLayer = MainMenuScene::create();
 
+	KUtils::playSound(rcSoundBTNDown);
     pScene->addChild(pLayer);
     CCDirector::sharedDirector()->replaceScene(pScene);
 }

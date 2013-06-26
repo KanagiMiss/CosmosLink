@@ -21,9 +21,12 @@ public:
 
 	void backToMenuCallback(CCObject* pSender);
 	void restartCallback(CCObject* pSender);
+	void updateGallery();
 
     // implement the "static node()" method manually
     CREATE_FUNC(GameEndScene);
+
+private:
 };
 
 #endif /*__GAMEENDSCENE_H__*/

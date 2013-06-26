@@ -1,12 +1,23 @@
+#include "AppDelegate.h"
 #include "cocos2d.h"
 #include "CCEGLView.h"
-#include "AppDelegate.h"
 #include "MainMenuScene.h"
-#include "SimpleAudioEngine.h"
+#include "CosLogic.h"
+#include "CosResource.h"
+#include "KUtils.h"
 
+;using namespace cocos2d;
 using namespace CocosDenshion;
 
-USING_NS_CC;
+
+
+static cosmos::CosGame *createGame()
+{
+	cosmos::CosGame *pGame = cosmos::CosGame::getInstance();
+	pGame->loadConfig();
+	pGame->loadGallery();
+	return pGame;
+}
 
 AppDelegate::AppDelegate()
 {
@@ -68,8 +79,29 @@ bool AppDelegate::applicationDidFinishLaunching()
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60);
 
+	//create game logic
+	createGame();
+
+	//load sound effects
+	KUtils::loadSound(rcSoundRM);
+	KUtils::loadSound(rcSoundBook);
+	KUtils::loadSound(rcSoundBTNDown);
+	KUtils::loadSound(rcSoundGameEnd);
+	KUtils::loadSound(rcSoundGameStart);
+	KUtils::loadSound(rcSoundGameOver);
+
+	//load music
+	KUtils::loadMusic(rcSoundMainBGM);
+
+	// set default volume
+    SimpleAudioEngine::sharedEngine()->setEffectsVolume(0.5);
+	SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(0.2);
+
     // create a scene. it's an autorelease object
     CCScene *pScene = MainMenuScene::scene();
+
+	// play bgm
+	KUtils::playMusic(rcSoundMainBGM);
 
     // run
     pDirector->runWithScene(pScene);

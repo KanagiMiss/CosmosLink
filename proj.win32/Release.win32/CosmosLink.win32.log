@@ -1,25 +1,65 @@
-﻿生成启动时间为 2013/6/15 16:55:30。
+﻿生成启动时间为 2013/6/22 17:15:36。
      1>项目“C:\Users\cfxw-mio\Dark_Flame_Master\CPP\VS2010工程\CosmosLink\proj.win32\CosmosLink.win32.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
          正在创建“Release.win32\CosmosLink.win32.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        ClCompile:
-         D:\software\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\include" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\kazmath\include" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\platform\win32" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\platform\third_party\win32" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\platform\third_party\win32\OGLES" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\external" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\CocosDenshion\include" /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGSNDEBUG /D _UNICODE /D UNICODE /Gm- /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release.win32\\" /Fd"Release.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\CosScene.cpp ..\Classes\DifficultyScene.cpp ..\Classes\GalleryScene.cpp ..\Classes\GameEndScene.cpp ..\Classes\LevelSelectScene.cpp ..\Classes\MainMenuScene.cpp ..\Classes\OptionScene.cpp ..\Classes\PlayingGameScene.cpp
+         D:\software\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\include" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\kazmath\include" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\platform\win32" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\platform\third_party\win32" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\platform\third_party\win32\OGLES" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\external" /I"C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\CocosDenshion\include" /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGSNDEBUG /D _UNICODE /D UNICODE /Gm- /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release.win32\\" /Fd"Release.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\AppDelegate.cpp ..\Classes\CosLogic.cpp ..\Classes\CosScene.cpp ..\Classes\DifficultyScene.cpp ..\Classes\GalleryScene.cpp ..\Classes\GameEndScene.cpp ..\Classes\LevelSelectScene.cpp ..\Classes\MainMenuScene.cpp ..\Classes\OptionScene.cpp ..\Classes\PlayingGameScene.cpp
+         AppDelegate.cpp
+     1>D:\software\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+     1>..\Classes\AppDelegate.cpp(98): warning C4305: “参数”: 从“double”到“float”截断
+         CosLogic.cpp
+     1>D:\software\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+     1>..\Classes\CosLogic.cpp(43): warning C4101: “j”: 未引用的局部变量
+     1>..\Classes\CosLogic.cpp(95): warning C4101: “NeedRanNum”: 未引用的局部变量
          CosScene.cpp
      1>D:\software\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
          DifficultyScene.cpp
      1>D:\software\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+     1>..\Classes\DifficultyScene.cpp(23): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
          GalleryScene.cpp
      1>D:\software\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+     1>..\Classes\GalleryScene.cpp(107): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
+     1>..\Classes\GalleryScene.cpp(108): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
+     1>..\Classes\GalleryScene.cpp(114): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
+     1>..\Classes\GalleryScene.cpp(117): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
+     1>..\Classes\GalleryScene.cpp(120): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
+     1>..\Classes\GalleryScene.cpp(123): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
          GameEndScene.cpp
      1>D:\software\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+     1>..\Classes\GameEndScene.cpp(53): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
+     1>..\Classes\GameEndScene.cpp(65): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
+     1>..\Classes\GameEndScene.cpp(71): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
+     1>..\Classes\GameEndScene.cpp(91): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
          LevelSelectScene.cpp
      1>D:\software\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+     1>..\Classes\LevelSelectScene.cpp(108): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
          MainMenuScene.cpp
      1>D:\software\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
          OptionScene.cpp
      1>D:\software\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+     1>..\Classes\OptionScene.cpp(46): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
+     1>..\Classes\OptionScene.cpp(86): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
          PlayingGameScene.cpp
+     1>..\Classes\PlayingGameScene.cpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
      1>D:\software\Microsoft Visual Studio 10.0\VC\include\xlocale(323): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+     1>..\Classes\PlayingGameScene.cpp(229): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
+     1>..\Classes\PlayingGameScene.cpp(235): warning C4996: 'cocos2d::CCLabelBMFont::labelWithString': 被声明为已否决
+                 C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\cocos2dx\label_nodes/CCLabelBMFont.h(208) : 参见“cocos2d::CCLabelBMFont::labelWithString”的声明
          正在生成代码...
        ResourceCompile:
          所有输出均为最新。
@@ -41,7 +81,7 @@
          Release.win32\tinyxmlparser.obj
          Release.win32\VisibleRect.obj
          Release.win32\main.obj
-         libExtensions.lib(CCTableView.obj) : 找到 MSIL .netmodule 或使用 /GL 编译的模块；正在使用 /LTCG 重新启动链接；将 /LTCG 添加到链接命令行以改进链接器性能
+         libExtensions.lib(CCControlSwitch.obj) : 找到 MSIL .netmodule 或使用 /GL 编译的模块；正在使用 /LTCG 重新启动链接；将 /LTCG 添加到链接命令行以改进链接器性能
          正在生成代码
          已完成代码的生成
          CosmosLink.win32.vcxproj -> C:\Users\cfxw-mio\Dark_Flame_Master\cocos2d-2.0-x-2.0.4\Release.win32\CosmosLink.win32.exe
@@ -54,4 +94,4 @@
 
 生成成功。
 
-已用时间 00:00:25.13
+已用时间 00:00:36.88

@@ -6,6 +6,7 @@
 #include "tinystr.h"
 #include "VisibleRect.h"
 #include "CosResource.h"
+#include "KUtils.h"
 
 #include <string>
 #include <cmath>
@@ -16,15 +17,36 @@
 #endif
 
 using namespace cocos2d;
+using namespace CocosDenshion;
 
 static const std::string XML_FILE = rcCosData;
 
 void PlayingGameScene::runThisTest()
 {
+	CCLayer *pBack = new CCLayer();
 	CCLayer *pLayer = new PlayingGameLayer();
-	pLayer->autorelease();
-	addChild(pLayer);
+	cosmos::CosGame *pGame = cosmos::CosGame::getInstance();
+	char pTrName[45];
+	memset(pTrName,0,sizeof(pTrName));
+	//load background
+	int nLevelNum = static_cast<int>(pGame->getGameLevel());//Ê∏∏ÊàèÂÖ≥Âç°Á¥¢ÂºïÂÄº
 
+	sprintf(pTrName,rcPlayingGameBackGround,nLevelNum);
+	//std::cout << pTrName << endl;
+	CCSprite* pSprite = CCSprite::create(pTrName);
+	if(pSprite){
+		// Place the sprite on the center of the screen
+		//pSprite->setAnchorPoint(ccp(0,0));
+		pSprite->setPosition(VisibleRect::center());
+
+		// Add the sprite to layer as a child layer.
+		pBack->addChild(pSprite, 0);
+	}
+	pLayer->autorelease();
+	pBack->autorelease();
+	addChild(pBack, 0);
+	addChild(pLayer, 1);
+	
 	CCDirector::sharedDirector()->replaceScene(FadeWhiteTransition::create(0.4f,this));
 }
 
@@ -32,7 +54,7 @@ bool PlayingGameLayer::loadConfigFromFile()
 {
 	TiXmlDocument *pDoc = new TiXmlDocument(XML_FILE);
 	pDoc->LoadFile();
-	TiXmlElement *Root = pDoc->RootElement();  //∏˘£¨<Rank>
+	TiXmlElement *Root = pDoc->RootElement();  //Ê†πÔºå<Rank>
 	TiXmlNode *Child = Root->FirstChild("Easy");
 	switch(pGame->getDiffculty())
 	{
@@ -46,7 +68,7 @@ bool PlayingGameLayer::loadConfigFromFile()
 		Child = Root->FirstChild("Hard");
 		break;
 	}
-	TiXmlElement *pFirE = Child->FirstChildElement(); //“∂◊”Ω⁄µ„
+	TiXmlElement *pFirE = Child->FirstChildElement(); //Âè∂Â≠êËäÇÁÇπ
 	while(NULL != pFirE)
 	{
 		if (pFirE->ValueStr().compare("VerNum") == 0)
@@ -88,12 +110,19 @@ bool PlayingGameLayer::loadAllImages()
 	m_nOriginX = VisibleRect::center().x - (m_nBoardWidth/2);
 	m_nOriginY = VisibleRect::center().y - (m_nBoradHeight/2);
 
-	int nLevelNum = static_cast<int>(pGame->getGameLevel());//”Œœ∑πÿø®À˜“˝÷µ
+	int nLevelNum = static_cast<int>(pGame->getGameLevel());//Ê∏∏ÊàèÂÖ≥Âç°Á¥¢ÂºïÂÄº
+	const char *pLinkImg;
+	switch(nLevelNum){
+	case 0:pLinkImg = rcLinkImagesBlack;break;
+	case 1:pLinkImg = rcLinkImagesMoe;break;
+	case 2:pLinkImg = rcLinkImagesOld;break;
+	default:pLinkImg = rcLinkImagesBlack;
+	}
 	for (int i=1;i<m_nVerNum+1;i++)
 		for (int j=1;j<m_nHorNum+1;j++)
 	{
 		cosmos::CosGame::link_t val = pGame->getBoardPosValue(i,j);
-		sprintf(pTrName,rcLinkImages,/*nLevelNum,*/val);
+		sprintf(pTrName,pLinkImg,/*nLevelNum,*/val+1);
 
 		int nPointX = m_nOriginX + (j-1)*m_nImageSizeDraw;
 		int nPointY = m_nOriginY + (i-1)*m_nImageSizeDraw;
@@ -106,19 +135,7 @@ bool PlayingGameLayer::loadAllImages()
 		m_pAllImages.push_back(pPic);
 		pPic->setAnchorPoint(ccp(0,0));
 		pPic->setPosition(ccp(nPointX,nPointY));
-		addChild(pPic);
-	}
-
-	//load background
-	sprintf(pTrName,rcPlayingGameBackGround,nLevelNum);
-	CCSprite* pSprite = CCSprite::create(pTrName);
-	if(pSprite){
-		// Place the sprite on the center of the screen
-		//pSprite->setAnchorPoint(ccp(0,0));
-		pSprite->setPosition(VisibleRect::center());
-
-		// Add the sprite to layer as a child layer.
-		this->addChild(pSprite, 0);
+		addChild(pPic,1);
 	}
 
 	return true;
@@ -181,27 +198,46 @@ void PlayingGameLayer::onEnter()
 	#endif
 	//init current time (must be at here!)
 	m_lfCurrTime = m_lfTimeLimit;
-	//load background
 	//create logical board
 	cosmos::CosGame::getInstance()->createBoard(m_nHorNum,m_nVerNum,m_nImageNum,m_nNumPerCouple);
 	//load all images
 	if(!loadAllImages())
 		CCLOG("Error: Failed to load images.");
 
+	//draw menu bar
+	//upside
+	if(pGame->getDiffculty() == cosmos::HARD){
+		CCSprite *ups = CCSprite::create(rcMenuBar45);
+		ups->setAnchorPoint(ccp(0.5,1));
+		ups->setPosition(VisibleRect::top());
+		addChild(ups, 1);
+	}
+
+	//downside
+	float incX = 0;
+	float rightX = VisibleRect::right().x;
+	while(incX < rightX){
+		CCSprite *sp = CCSprite::create(rcMenuBar50);
+		sp->setAnchorPoint(ccp(0,0));
+		sp->setPosition(ccp(incX,VisibleRect::leftBottom().y));
+		addChild(sp,1);
+		incX += 50;
+	}
+
 	//set initial score
 	char tempstr[20];
 	_itoa(cosmos::CosGame::getInstance()->getGameTime(),tempstr,10);
-	pScore = CCLabelTTF::create(tempstr, "Arial", 25);
-	pScore->setPosition(VisibleRect::rightTop());
-	pScore->setAnchorPoint(ccp(1,1));
-	addChild(pScore,1);
+	pScore = CCLabelBMFont::labelWithString((std::string("ÂàÜÊï∞:")+std::string(tempstr)).c_str(), rcImageFont32);
+	pScore->setAnchorPoint(ccp(0.5,0));
+	pScore->setPosition(VisibleRect::bottom());
+	addChild(pScore,2);
 	//set initial time
-	sprintf(tempstr,"%.2lf",m_lfTimeLimit - pGame->getGameTime());
-	pTimer = CCLabelTTF::create(tempstr, "Arial", 25);
-	pTimer->setPosition(VisibleRect::leftTop());
-	pTimer->setAnchorPoint(ccp(0,1));
+	sprintf(tempstr,"%05.2lf",m_lfTimeLimit - pGame->getGameTime());
+	pTimer = CCLabelBMFont::labelWithString((std::string("Êó∂Èó¥:")+std::string(tempstr)).c_str(), rcImageFont32);
+	pTimer->setPosition(VisibleRect::top());
+	pTimer->setAnchorPoint(ccp(0.5,1));
 	if(pGame->getDiffculty() == cosmos::HARD)
-		addChild(pTimer,1);
+		addChild(pTimer,2);
 	//set game loop
 	this->schedule(schedule_selector(PlayingGameLayer::GameLoop),0.1f);
 }
@@ -239,34 +275,33 @@ void PlayingGameLayer::GameLoop(float f)
 void PlayingGameLayer::updateTime()
 {
 		char tempstr[20]={};
-		sprintf(tempstr,"%.2lf",m_lfCurrTime);
-		pTimer->setString(tempstr);
+		sprintf(tempstr,"%05.2lf",m_lfCurrTime);
+		pTimer->setString((std::string("Êó∂Èó¥:")+std::string(tempstr)).c_str());
 }
 
 void PlayingGameLayer::runChangeScore()
 {
-	int tempScore = atoi(pScore->getString());
-	int addScore = nDstScore-tempScore;
+	int addScore = nDstScore-mTmpScore;
 	char tempStr[20]={};
 	#ifdef __KDEBUG__
-	std::cout << tempScore << " " << nDstScore <<std::endl;
+	std::cout << mTmpScore << " " << nDstScore <<std::endl;
 	#endif
 	if(abs(addScore)>10)
 	{
-		tempScore+=addScore/5;
-		sprintf(tempStr,"%d",tempScore);
-		pScore->setString(tempStr);
+		mTmpScore+=addScore/5;
+		sprintf(tempStr,"%d",mTmpScore);
+		pScore->setString((std::string("ÂàÜÊï∞:")+std::string(tempStr)).c_str());
 	}
 	else if(abs(addScore)>2 && abs(addScore)<=10)
 	{
-		tempScore += addScore/abs(addScore);
-		sprintf(tempStr,"%d",tempScore);
-		pScore->setString(tempStr);
+		mTmpScore += addScore/abs(addScore);
+		sprintf(tempStr,"%d",mTmpScore);
+		pScore->setString((std::string("ÂàÜÊï∞:")+std::string(tempStr)).c_str());
 	}
 	else
 	{
 		sprintf(tempStr,"%d",nDstScore);
-		pScore->setString(tempStr);
+		pScore->setString((std::string("ÂàÜÊï∞:")+std::string(tempStr)).c_str());
 		isChangeScore = false;
 	}
 }
@@ -318,25 +353,28 @@ void PlayingGameLayer::updateAndRender(const cocos2d::CCPoint &p)
 			x2 = static_cast<int>(m_ptSecondClick.x),
 			y2 = static_cast<int>(m_ptSecondClick.y);
 		if(pGame->isLinkable(x1, y1, x2, y2)){
-			//œ˚»•¡¨¡¨ø¥∑ΩøÈ
+			//Ê∂àÂéªËøûËøûÁúãÊñπÂùó
 			pGame->setLinkNull(x1,y1);
 			pGame->setLinkNull(x2,y2);
 			this->removeChild(m_pAllImages[(y1-1)*m_nHorNum + (x1-1)],true);
 			this->removeChild(m_pAllImages[(y2-1)*m_nHorNum + (x2-1)],true);
-			// ±º‰Ω±¿¯
+			//Êí≠ÊîæÈü≥Êïà
+			KUtils::playSound(rcSoundRM);
+			//Êó∂Èó¥Â•ñÂä±
 			m_lfRewardInc += 1;
 			double incTime = 0.5+2.5*(1-exp(-m_lfRewardInc*0.2));
 			incTime = ((m_lfCurrTime + incTime)>m_lfTimeLimit)?0:incTime;
 			m_lfCurrTime += incTime;//inc = 0.5 + 2.5*(1-exp(-x*0.2))
-			//∑÷ ˝Ω±¿¯
+			//ÂàÜÊï∞Â•ñÂä±
+			mTmpScore = pGame->getGameScore();
 			pGame->addGameScore(50+50*(1-exp(-m_lfRewardInc*0.2)));
 			changeScoreTo(pGame->getGameScore());
-			//ºÏ≤‚”Œœ∑ «∑Ò”Æ		
+			//Ê£ÄÊµãÊ∏∏ÊàèÊòØÂê¶Ëµ¢		
 			if(pGame->isAllClear()){
 				gotoEndGameScene(true);
 				return;
 			}
-			//ºÏ≤‚”Œœ∑ «∑Òƒ‹ºÃ–¯
+			//Ê£ÄÊµãÊ∏∏ÊàèÊòØÂê¶ËÉΩÁªßÁª≠
 			if(!pGame->isContinuable()){
 				gotoEndGameScene(false);//failed
 				return;

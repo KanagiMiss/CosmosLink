@@ -5,13 +5,9 @@
 #include "CosLogic.h"
 #include "CosResource.h"
 #include "VisibleRect.h"
+#include "KUtils.h"
 
 using namespace cocos2d;
-
-static cosmos::CosGame *createGame()
-{
-	return cosmos::CosGame::getInstance();
-}
 
 CCScene* MainMenuScene::scene()
 {
@@ -87,8 +83,6 @@ bool MainMenuScene::init()
 			this->addChild(pTitle,1);
 		}
 
-		createGame();	//create game logic
-
 		bRet = true;
 	} while (0);
 
@@ -98,6 +92,7 @@ bool MainMenuScene::init()
 void MainMenuScene::menuStartCallback(CCObject* pSender)
 {
 	DifficultyScene *pScene = new DifficultyScene();
+	KUtils::playSound(rcSoundBTNDown);
 	if(pScene){
 		pScene->runThisTest();
 		pScene->release();
@@ -107,6 +102,7 @@ void MainMenuScene::menuStartCallback(CCObject* pSender)
 void MainMenuScene::menuOptionCallback(CCObject* pSender)
 {
 	OptionScene *pScene = new OptionScene();
+	KUtils::playSound(rcSoundBTNDown);
 	if(pScene){
 		pScene->runThisTest();
 		pScene->release();
@@ -116,6 +112,7 @@ void MainMenuScene::menuOptionCallback(CCObject* pSender)
 void MainMenuScene::menuGalleryCallback(CCObject* pSender)
 {
 	GalleryScene *pScene = new GalleryScene();
+	KUtils::playSound(rcSoundBTNDown);
 	if(pScene){
 		pScene->runThisTest();
 		pScene->release();

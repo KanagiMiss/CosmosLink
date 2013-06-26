@@ -3,6 +3,7 @@
 #ifndef __COSRESOURCE_H_
 #define __COSRESOURCE_H_
 
+
 static const char rcMainMenuBackGround[] = "images/BackGround/MainMenuBG.png";
 static const char rcMainMenuItemCloseNormal[] = "images/MenuItem/CloseNormal.png";
 static const char rcMainMenuItemCloseSelected[] = "images/MenuItem/CloseSelected.png";
@@ -29,15 +30,7 @@ static const char rcDifficultyItemHardNormal[] = "images/MenuItem/HardNormal.png
 static const char rcDifficultyItemHardSelected[] = "images/MenuItem/HardSelected.png";
 
 static const char rcLevelSelectBackGround[] = "images/BackGround/LevelSelectBG.png";
-static const char rcLevel0Capture[] = "images/Level/level01cap.png";
-static const char rcLevel1Capture[] = "images/Level/level02cap.png";
-static const char rcLevel2Capture[] = "images/Level/level03cap.png";
-static const char rcLevel3Capture[] = "images/Level/level04cap.png";
-static const char rcLevel4Capture[] = "images/Level/level05cap.png";
-static const char rcLevel5Capture[] = "images/Level/level06cap.png";
-static const char rcLevel6Capture[] = "images/Level/level07cap.png";
-static const char rcLevel7Capture[] = "images/Level/level08cap.png";
-static const char rcLevel8Capture[] = "images/Level/level09cap.png";
+static const char rcLevelCapture[] = "images/Level/level%02dcap.png";
 
 static const char rcLevelSelectBackNormal[] = "images/MenuItem/b1.png";
 static const char rcLevelSelectBackSelect[] = "images/MenuItem/b2.png";
@@ -47,7 +40,9 @@ static const char rcLevelSelectEnterNormal[] = "images/MenuItem/r1.png";
 static const char rcLevelSelectEnterSelect[] = "images/MenuItem/r2.png";
 
 static const char rcPlayingGameBackGround[] = "images/BackGround/PlayingGameBG%d.png";
-static const char rcLinkImages[] = "images/LinkObject/elem0-%d.png";
+static const char rcLinkImagesBlack[] = "images/LinkObject/black/%d.jpg";
+static const char rcLinkImagesOld[] = "images/LinkObject/Old/%d.jpg";
+static const char rcLinkImagesMoe[] = "images/LinkObject/moe/%d.png";
 
 static const char rcGameEndBackGround[] = "images/BackGround/GameEndBG.png";
 
@@ -67,7 +62,24 @@ static const char rcMainMenuNormal[] = "images/MenuItem/MainMenuNormal.png";
 static const char rcMainMenuSelected[] = "images/MenuItem/MainMenuSelected.png";
 
 static const char rcTitle[] = "images/Element/title.png";
+static const char rcMenuBar40[] = "images/Element/MenuBar40.png";
+static const char rcMenuBar45[] = "images/Element/MenuBar45.png";
+static const char rcMenuBar50[] = "images/Element/MenuBar50.png";
+
+static const char rcImageFont32[] = "font/KMFNT32.fnt";
+static const char rcImageFont40[] = "font/KMFNT40.fnt";
+static const char rcImageFont45[] = "font/KMFNT45.fnt";
+static const char rcImageFont60[] = "font/KMFNT60.fnt";
 
 static const char rcCosData[] = "cosdata.xml";
+
+static const char rcSoundRM [] = "sound/SFX/RMSuccess.mp3";
+static const char rcSoundBook [] = "sound/SFX/Book.mp3";
+static const char rcSoundBTNDown [] = "sound/SFX/BottonDown.mp3";
+static const char rcSoundGameEnd [] = "sound/SFX/GameEnd.mp3";
+static const char rcSoundGameStart [] = "sound/SFX/Start.mp3";
+static const char rcSoundGameOver [] = "sound/SFX/GameOver.mp3";
+
+static const char rcSoundMainBGM [] = "sound/music/bgm01.mp3";
 
 #endif
